@@ -1,0 +1,5 @@
+Bus schedueles:
+
+* Retrieved from <http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx>
+* Contain NUL bytes (corrected by clean_bus_routes.py)
+* Don't include AM/PM descriptor (corrected by clean_bus_routes.py)
