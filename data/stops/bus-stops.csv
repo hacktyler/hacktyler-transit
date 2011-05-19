@@ -10,26 +10,26 @@
 "Red Line North",111,"Broadway","Franklin",,,"TRUE",,"N Broadway Ave & W Franklin St, Tyler, TX 75702, USA",32.3663907,-95.3015265
 "Red Line North",112,"Broadway","MLK","Iglesia Church",,"TRUE",,"N Broadway Ave & W Martin Luther King Jr Blvd, Tyler, TX 75702, USA",32.3701775,-95.3018846
 "Red Line North",113,"Broadway","Barrett","Christian Teaching",,"TRUE",,"N Broadway Ave & W Barrett St, Tyler, TX 75702, USA",32.3710892,-95.3018776
-"Red Line North",114,"Broadway","26th","Liberty Arms/Apt","TRUE","TRUE",,,,
-"Red Line North",115,"32nd",,"Boys and Girls / Glass Center","TRUE","TRUE",,,,
-"Red Line North",116,"32nd","Glass Ave","Woldert Park",,"TRUE",,,,
+"Red Line North",114,"Broadway","28th","Liberty Arms/Apt","TRUE","TRUE",,,32.37494,-95.3019
+"Red Line North",115,"32nd",,"Boys and Girls / Glass Center","TRUE","TRUE",,,32.38066,-95.3056
+"Red Line North",116,"32nd","Glass Ave","Woldert Park",,"TRUE",,,32.38064,-95.3076
 "Red Line North",117,"32nd","Grande Ave","Before intersection",,"TRUE",,"N Grand Ave & 32nd St, Tyler, TX 75702, USA",32.3806581,-95.3108828
 "Red Line North",118,"Grand","31st",,,"TRUE",,"N Grand Ave & 31st St, Tyler, TX 75702, USA",32.3796333,-95.3108722
 "Red Line North",119,"Grand","30th",,,"TRUE",,"N Grand Ave & 30th St, Tyler, TX 75702, USA",32.3785565,-95.3108744
-"Red Line North",120,"Grand",,"Grand Manor",,"TRUE",,,,
-"Red Line North",121,"Grand",,"Texas College","TRUE","TRUE",,,,
+"Red Line North",120,"Grand",,"Grand Manor",,"TRUE",,,32.37671,-95.3109
+"Red Line North",121,"Grand",,"Texas College","TRUE","TRUE",,,32.37508,-95.3109
 "Red Line North",122,"Grand","Barrett",,,"TRUE",,"W Barrett St & Grand Ave, Tyler, TX 75702, USA",32.3718922,-95.310993
 "Red Line North",123,"MLK","Ross",,,"TRUE",,"W Martin Luther King Jr Blvd & N Ross Ave, Tyler, TX 75702, USA",32.370384,-95.313424
 "Red Line North",124,"MLK","Englewood",,,"TRUE",,"W Martin Luther King Jr Blvd & N Englewood Ave, Tyler, TX 75702, USA",32.3703611,-95.31572
 "Red Line North",125,"MLK","Hill",,,"TRUE",,"W Martin Luther King Jr Blvd & N Hill Ave, Tyler, TX 75702, USA",32.3703262,-95.3174758
 "Red Line North",126,"Glenwood","Nancy",,,"TRUE",,"N Glenwood Blvd & Nancy Dr, Tyler, TX 75702, USA",32.3691577,-95.3189973
-"Red Line North",127,"Glenwood","Harming","Dr. Pepper Company",,"TRUE",,,,
+"Red Line North",127,"Glenwood","Harmony","Dr. Pepper Company",,"TRUE",,,32.366,-95.319
 "Red Line North",128,"Glenwood","Gentry","Hickory Fair",,,"TRUE","W Gentry Pkwy & N Glenwood Blvd, Tyler, TX 75702, USA",32.362212,-95.3189802
 "Red Line North",129,"Gentry","Meadow","Labor Ready",,"TRUE",,"W Gentry Pkwy & Meadow Ln, Tyler, TX 75702, USA",32.3610194,-95.3169634
-"Red Line North",130,"Gentry","Bow and Ross","Exxon",,"TRUE",,,,
+"Red Line North",130,"Gentry","Bow and Ross","Exxon",,"TRUE",,,32.35951,-95.31407
 "Red Line North",131,"Gentry","Palace","Neighborhood Services","TRUE","TRUE",,"W Gentry Pkwy & N Palace Ave, Tyler, TX 75702, USA",32.3596003,-95.310238
 "Red Line North",132,"Gentry","Harris","Building Blocks Day Care",,"TRUE",,"W Gentry Pkwy & N Harris Ave, Tyler, TX 75702, USA",32.3596162,-95.3075468
-"Red Line North",133,"Gentry","Bois D'Arc","Bumper to Bumper Auto Pars",,"TRUE",,,,
+"Red Line North",133,"Gentry","Bois D'Arc","Bumper to Bumper Auto Pars",,"TRUE",,,32.35955,-95.30282
 "Red Line North",134,"Broadway","Bow","Catholic Church",,"TRUE",,"N Broadway Ave & E Bow St, Tyler, TX 75702, USA",32.3582207,-95.3007293
 "Red Line North",135,"Broadway","Ferguson","KLTV","TRUE","TRUE",,"N Broadway Ave & W Ferguson St, Tyler, TX 75702, USA",32.3517199,-95.3006202
 "Red Line North",136,"Broadway","Elm","Expert Tire",,"TRUE",,"S Broadway Ave & W Elm St, Tyler, TX 75702, USA",32.3496758,-95.3006165

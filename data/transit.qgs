@@ -2,24 +2,24 @@
 <qgis projectname="" version="1.6.0-Copiapo">
     <title></title>
     <mapcanvas>
-        <units>meters</units>
+        <units>degrees</units>
         <extent>
-            <xmin>-10624004.023143</xmin>
-            <ymin>3796724.847024</ymin>
-            <xmax>-10591999.385594</xmax>
-            <ymax>3815040.426166</ymax>
+            <xmin>-95.524911</xmin>
+            <ymin>32.251112</ymin>
+            <xmax>-95.016993</xmax>
+            <ymax>32.541783</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
             <spatialrefsys>
-                <proj4>+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +over +no_defs</proj4>
-                <srsid>3644</srsid>
-                <srid>900913</srid>
-                <authid>EPSG:900913</authid>
-                <description>Google Mercator</description>
-                <projectionacronym>merc</projectionacronym>
+                <proj4>+proj=longlat +ellps=WGS84 +towgs84=0,0,0,0,0,0,0 +no_defs</proj4>
+                <srsid>3452</srsid>
+                <srid>4326</srid>
+                <authid>EPSG:4326</authid>
+                <description>WGS 84</description>
+                <projectionacronym>longlat</projectionacronym>
                 <ellipsoidacronym>WGS84</ellipsoidacronym>
-                <geographicflag>false</geographicflag>
+                <geographicflag>true</geographicflag>
             </spatialrefsys>
         </destinationsrs>
     </mapcanvas>
@@ -324,7 +324,7 @@
                     <outlinewidth>0.26</outlinewidth>
                     <fillcolor red="12" blue="23" green="209"/>
                     <fillpattern>SolidPattern</fillpattern>
-                    <texturepath null="1"></texturepath>
+                    <texturepath></texturepath>
                 </symbol>
             </singlesymbol>
             <displayfield>STOP_ST</displayfield>
@@ -1125,7 +1125,7 @@
         </Identify>
         <SpatialRefSys>
             <ProjectCRSProj4String type="QString">+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs</ProjectCRSProj4String>
-            <ProjectCRSID type="int">3644</ProjectCRSID>
+            <ProjectCRSID type="int">3452</ProjectCRSID>
             <ProjectionsEnabled type="int">1</ProjectionsEnabled>
         </SpatialRefSys>
         <Gui>
