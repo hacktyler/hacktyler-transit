@@ -83,18 +83,18 @@
 "Blue Line Northwest",312,"Gentry","Van HWY/110","Taco Bell",,"TRUE",,"Rte 110 & Van Hwy & W Gentry Pkwy, Tyler, TX 75702, USA",32.3696847,-95.3311067
 "Blue Line Northwest",313,"Gentry","Baldwin","Tyler Day Nursery",,"TRUE",,"W Gentry Pkwy & Baldwin Dr, Tyler, TX 75702, USA",32.371004,-95.3321318
 "Blue Line Northwest",314,"Gentry","Jordan","McDonald's","TRUE","TRUE",,"W Gentry Pkwy & Jordan St, Tyler, TX 75702, USA",32.376318,-95.3320126
-"Blue Line Northwest",315,"Gentry",,"Across from Motel 6",,"TRUE",,,,
-"Blue Line Northwest",316,"Loop 323","Hwy 89 North","Quality Inn","TRUE","TRUE",,,,
+"Blue Line Northwest",315,"Gentry",,"Across from Motel 6",,"TRUE",,,32.37925,-95.3316
+"Blue Line Northwest",316,"Loop 323","Hwy 89 North","Quality Inn","TRUE","TRUE",,,32.38058,-95.3333
 "Blue Line Northwest",317,"Loop 323","Silver Creek Drive","12 Oaks Motel",,"TRUE",,"Texas 323 Loop & Silver Creek Dr, Tyler, TX 75702, USA",32.3787973,-95.3389939
 "Blue Line Northwest",318,"Loop 323","Cope","Car Wash",,,"TRUE","Texas 323 Loop & Cope St, Tyler, TX 75702, USA",32.3725651,-95.3433884
 "Blue Line Northwest",319,"Loop 323","Garden Valley","Family Dollar",,"TRUE",,"Texas 323 Loop & Garden Valley Rd, Tyler, TX 75704, USA",32.3685387,-95.3433187
 "Blue Line Northwest",320,"Loop 323","Lion Lane","John Tyler High School","TRUE","TRUE",,"Texas 323 Loop & Lion Dr, Tyler, TX 75702, USA",32.3618164,-95.3433129
-"Blue Line Northwest",321,"Erwin","Loop 323","Greenbrier Nursing Home",,"TRUE",,,,
+"Blue Line Northwest",321,"Erwin","Loop 323","Greenbrier Nursing Home",,"TRUE",,,32.35249,-95.3402
 "Blue Line Northwest",322,"Erwin","Willowbrook","Across from Country Club",,"TRUE",,"W Erwin St & Willowbrook Ave, Tyler, TX 75702, USA",32.3515141,-95.3355383
 "Blue Line Northwest",323,"Erwin",,"Cross Roads Apartments",,"TRUE",,,,
 "Blue Line Northwest",324,"Erwin","Lyons","Across from Save-a-lot",,"TRUE",,"W Erwin St & S Lyons Ave, Tyler, TX 75702, USA",32.3501977,-95.3262635
 "Blue Line Northwest",325,"Lyons","Front","Andrews Center",,"TRUE",,"W Front St & S Lyons Ave, Tyler, TX 75702, USA",32.3465365,-95.3261963
-"Blue Line Northwest",326,"Front",,"Rose Garden / Harvey Convention Center","TRUE","TRUE",,,,
+"Blue Line Northwest",326,"Front",,"Rose Garden / Harvey Convention Center","TRUE","TRUE",,,32.34653,-95.3235
 "Blue Line Northwest",327,"Front","Fenton","The Children's Place",,"TRUE",,"W Front St & S Fenton Ave, Tyler, TX 75702, USA",32.346566,-95.319272
 "Blue Line Northwest",328,"Front","Hill","Cotton Belt Building",,"TRUE",,"W Front St & S Hill Ave, Tyler, TX 75702, USA",32.3465867,-95.3180449
 "Blue Line Northwest",329,"Glenwood","Shaw","Water Tower",,"TRUE",,"S Glenwood Blvd & Shaw St, Tyler, TX 75701, USA",32.336898,-95.3129306
@@ -113,7 +113,7 @@
 "Blue Line Southwest",410,"Walton","Loop 323","Southwest Pines Apartments","TRUE","TRUE",,"W Southwest Loop 323 & Walton Rd, Tyler, TX, USA",32.319296,-95.342323
 "Blue Line Southwest",411,"Robertson","Loop 323","RTDC School","TRUE","TRUE",,"W Southwest Loop 323 & Robertson Rd, Tyler, TX 75701, USA",32.3329202,-95.3404694
 "Blue Line Southwest",412,"Robertson","Bennet","Andrews Center",,"TRUE",,"Robertson Rd & Bennett Ave, Tyler, TX 75701, USA",32.3329453,-95.3366865
-"Blue Line Southwest",413,"Shaw","Loop 323 WSW","Hollywood Theater",,"TRUE",,,,
+"Blue Line Southwest",413,"Shaw","Loop 323 WSW","Hollywood Theater",,"TRUE",,,32.33632,-95.3386
 "Blue Line Southwest",414,"Front","Loop 323","Westwood Shopping Center","TRUE","TRUE",,,,
 "Blue Line Southwest",415,"Front","Southgate",,,,"TRUE","W Front St & Southgate Ave, Tyler, TX 75702, USA",32.3465089,-95.3332157
 "Blue Line Southwest",416,"Front","Lyons","Andrews Center","TRUE","TRUE",,"W Front St & S Lyons Ave, Tyler, TX 75702, USA",32.3465365,-95.3261963
@@ -128,18 +128,18 @@
 "Blue Line Southwest",425,"Glenwood","Kennedy","Plyler School",,"TRUE",,"W Glenwood Blvd & Kennedy Ave, Tyler, TX 75701, USA",32.3315743,-95.3084654
 "Blue Line Southwest",426,"5th","Robertson","Before intersection",,"TRUE",,"S Robertson Ave & W 5th St, Tyler, TX 75701, USA",32.3310594,-95.3065307
 "Blue Line Southwest",427,"5th","Chilton","Before intersection",,"TRUE",,"Chilton Ave & W 5th St, Tyler, TX 75701, USA",32.331023,-95.3047152
-"Green Line Northeast",501,"Donnybrook","6th",,,"TRUE",,,,
-"Green Line Northeast",502,"Beckham",,"Donut Palace",,"TRUE",,,,
+"Green Line Northeast",501,"Donnybrook","6th",,,"TRUE",,,32.3293,-95.2975
+"Green Line Northeast",502,"Beckham",,"Donut Palace",,"TRUE",,,32.3332,-95.2908
 "Green Line Northeast",503,"Beckham","Lake","ETMC Hospital","TRUE","TRUE",,"S Beckham Ave & E Lake St, Tyler, TX 75701, USA",32.336353,-95.291454
 "Green Line Northeast",504,"Beckham","Dawson","Trinity Mother Francis","TRUE","TRUE",,"S Beckham Ave & E Dawson St, Tyler, TX 75701, USA",32.3422592,-95.2927752
 "Green Line Northeast",505,"Beckham","Front","Dairy Queen",,"TRUE",,"E Front St & S Beckham Ave, Tyler, TX 75702, USA",32.3466484,-95.2942625
 "Green Line Northeast",506,"Beckham","Elm","Good S. Church",,"TRUE",,"S Beckham Ave & E Elm St, Tyler, TX 75702, USA",32.3495702,-95.2942901
 "Green Line Northeast",507,"Beckham","Locust","Across from Mexican Meat Market",,"TRUE",,"N Beckham Ave & E Locust St, Tyler, TX 75702, USA",32.352632,-95.2943695
-"Green Line Northeast",508,"HWY 271",,"Super One Foods",,"TRUE",,,,
+"Green Line Northeast",508,"HWY 271",,"Super One Foods",,"TRUE",,,32.361,-95.29256
 "Green Line Northeast",509,"HWY 271","Hillsboro","Family Dollar",,"TRUE",,"U.S. 271 & Hillsboro St, Tyler, TX 75702, USA",32.3651104,-95.2898863
 "Green Line Northeast",510,"HWY 271","Laurel","Fred's",,"TRUE",,"U.S. 271 & E Laurel St, Tyler, TX 75702, USA",32.3663592,-95.2894587
 "Green Line Northeast",511,"HWY 271","MLK","Relax Inn",,"TRUE",,"U.S. 271 & E Martin Luther King Jr Blvd, Tyler, TX 75702, USA",32.3699059,-95.2884119
-"Green Line Northeast",512,"MLK","Haynie",,,"TRUE",,,,
+"Green Line Northeast",512,"MLK","Haynie",,,"TRUE",,,32.32018,-95.29281
 "Green Line Northeast",513,"MLK","Church St",,,"TRUE",,"E Martin Luther King Jr Blvd & Church Ave, Tyler, TX 75702, USA",32.370168,-95.297117
 "Green Line Northeast",514,"MLK","North Spring",,,"TRUE",,"E Martin Luther King Jr Blvd & N Spring Ave, Tyler, TX 75702, USA",32.3701724,-95.299637
 "Green Line Northeast",515,"Broadway","Nutbush","Rail Road Crossing",,"TRUE",,"N Broadway Ave & W Nutbush St, Tyler, TX 75702, USA",32.3691466,-95.3018669
@@ -147,7 +147,7 @@
 "Green Line Northeast",517,"Broadway","Queen","City Park",,"TRUE",,"N Broadway Ave & W Queen St, Tyler, TX 75702, USA",32.3615884,-95.3015438
 "Green Line Northeast",518,"Gentry","Broadway","Health District",,"TRUE",,"W Gentry Pkwy & N Broadway Ave, Tyler, TX 75702, USA",32.359458,-95.3012504
 "Green Line Northeast",519,"Gentry","Beckham","Old WIC Office",,"TRUE",,"E Gentry Pkwy & N Beckham Ave, Tyler, TX 75702, USA",32.3598945,-95.2934023
-"Green Line Northeast",520,"Oakwood","Spring","Tyler Transit Office",,"TRUE",,,,
+"Green Line Northeast",520,"Oakwood","Spring","Tyler Transit Office",,"TRUE",,,32.3546,-95.29935
 "Green Line Northeast",521,"Beckham","Locust","Mexican Meat Market",,"TRUE",,"N Beckham Ave & E Locust St, Tyler, TX 75702, USA",32.352632,-95.2943695
 "Green Line Northeast",522,"Beckham","Elm","Mexican Hair Dresser",,"TRUE",,"S Beckham Ave & E Elm St, Tyler, TX 75702, USA",32.3495702,-95.2942901
 "Green Line Northeast",523,"Front","Beckham","Dairy Queen",,"TRUE",,"E Front St & S Beckham Ave, Tyler, TX 75702, USA",32.3466484,-95.2942625
@@ -155,7 +155,7 @@
 "Green Line Northeast",525,"Front","Palmer","Dehaven Eye Clinic",,"TRUE",,"E Front St & Palmer Ave, Tyler, TX 75702, USA",32.3463718,-95.2803378
 "Green Line Northeast",526,"Front","Old Henderson","Fruit Stand",,"TRUE",,"E Front St & Old Henderson Hwy, Tyler, TX 75702, USA",32.3466634,-95.2741492
 "Green Line Northeast",527,"Golden",,"Salvation Army Apartments",,"TRUE",,,,
-"Green Line Northeast",528,"Golden",,"Moore Middle School",,"TRUE",,,,
+"Green Line Northeast",528,"Golden",,"Moore Middle School",,"TRUE",,,32.33594,-95.2728
 "Green Line Northeast",529,"Golden","5th",,,"TRUE",,"E 5th St & Golden Rd, Tyler, TX 75701, USA",32.3321815,-95.2727339
 "Green Line Northeast",530,"5th","Tipton","Dewayne Restaurant",,"TRUE",,"E 5th St & Tipton Ave, Tyler, TX 75701, USA",32.3322336,-95.2750125
 "Green Line Northeast",532,"5th","Palmer","After Light at Church",,"TRUE",,"E 5th St & Palmer Ave, Tyler, TX 75701, USA",32.3324004,-95.280242
