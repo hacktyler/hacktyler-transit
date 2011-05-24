@@ -3,14 +3,12 @@
 import csv
 import json
 
-lines = {}
+stops = [] 
 
 with open('bus-stops.csv', 'r') as f:
     reader = csv.DictReader(f)
 
     for row in reader:
-        line = row.pop('line')
-        
         # Fix up types for client
         row['order'] = int(row['order'])
         row['shelter'] = (row['shelter'] == 'TRUE')
@@ -19,11 +17,12 @@ with open('bus-stops.csv', 'r') as f:
 
         row['latitude'] = float(row['latitude']) if row['latitude'] else None
         row['longitude'] = float(row['longitude'])  if row['longitude'] else None
+        
+        # Append a few useful attributes
+        row['line-slug'] = row['line'].replace(' ', '-').lower()
+        row['slug'] = (row['stop_street'] + '_' + row['next_cross_street']).replace(' ', '_').lower()
 
-        if line in lines:
-            lines[line].append(row)
-        else:
-            lines[line] = [row]
+        stops.append(row)
 
 with open('../../app/web/data/bus-stops.js', 'w') as f:
-    f.write('TRANSIT_ROUTES = %s' % json.dumps(lines))
+    f.write('TRANSIT_STOPS = %s' % json.dumps(stops))
