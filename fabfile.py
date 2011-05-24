@@ -19,6 +19,7 @@ def production():
     """
     Work on production environment
     """
+    env.settings = 'production'
     env.s3_bucket = 'media.hacktyler.com'
     env.app_s3_bucket = 'transit.hacktyler.com'
 
@@ -26,6 +27,7 @@ def staging():
     """
     Work on staging environment
     """
+    env.settings = 'staging'
     env.s3_bucket = 'media-beta.hacktyler.com'
     env.app_s3_bucket = 'transit-beta.hacktyler.com'
     
@@ -53,7 +55,7 @@ def branch(branch_name):
 """
 Commands - deployment
 """   
-def deploy_to_phonegap():
+def deploy_phonegap():
     require('settings', provided_by=[production, staging])
     local('DEPLOYMENT_TARGET=%(settings)s PHONEGAP_REPO=%(phonegap_repo)s ./update_phonegap.sh' % env)
 
@@ -64,7 +66,7 @@ def gzip_assets():
     """
     local('python gzip_assets.py')
 
-def deploy_app_to_s3():
+def deploy_s3():
     """
     Deploy the latest project site media to S3.
     """
