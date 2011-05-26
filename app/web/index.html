@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/base.css">
 	<link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/transit.css">
     
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
@@ -21,28 +22,35 @@
         <div class="sixteen columns">
             <header>
                 <h1>Hack Tyler Transit</h1>
+                <hr />
             </header>
             
             <section id="content">
-                <ul id="lines">
-                    <li id="red-line-north">Red Line North</li>
-                    <li id="red-line-south">Red Line South</li>
-                </ul>
-                 <section id="detail" style="display: none;"></section>
+                <div id="lines">
+                    <a id="red-line-north" class="button red">Red Line North</a>
+                    <a id="red-line-south" class="button red">Red Line South</a>
+                    <a id="blue-line-northwest" class="button blue">Blue Line Northwest</a>
+                    <a id="blue-line-southwest" class="button blue">Blue Line Southwest</a><br />
+                    <a id="green-line-northeast" class="button green">Green Line Northeast</a>
+                    <a id="green-line-southeast" class="button green">Green Line Southeast</a><br />
+                    <a id="yellow-line-southwest" class="button yellow">Yellow Line Southwest</a>
+                    <a id="yellow-line-southeast" class="button yellow">Yellow Line Southeast</a>
+                </div>
+
                 <ul id="stops" style="display: none;"></ul>
+
+                 <section id="detail" style="display: none;"></section>
             </section>
         </div>
     </div>
 
     <script type="text/template" id="stop-list-item-template"> 
-        <div class="<%= slug %>">
-            <h3 class="view"><%= stop_street %> / <%= next_cross_street %></h3>
-        </div>
+        <div class="<%= slug %>" id=class="view"><%= stop_street %> / <%= next_cross_street %></div>
     </script> 
 
     <script type="text/template" id="stop-detail-template"> 
         <h2><%= stop_street %></h2>
-        <div class="close">Back to stop list</div>
+        <a class="close">&laquo; Back to stop list</a>
     </script>
 
     <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script> 

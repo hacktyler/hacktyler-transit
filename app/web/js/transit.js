@@ -116,10 +116,8 @@ $(function() {
             Stops.each(function(stop, index, list) {
                 if (stop.get('line-slug') == line) {
                     App.liviews[stop.get('slug')].show();
-                    console.log("show");
                 } else {
                     App.liviews[stop.get('slug')].hide();
-                    console.log("hide");
                 }
             });
 
@@ -182,7 +180,7 @@ $(function() {
         window.location.hash = "";
     });
 
-    $('#lines li').click(function() {
+    $('#lines a').click(function() {
         window.location.hash = "line/" + $(this).attr("id");
     });
 

@@ -82,5 +82,5 @@ def local_app():
     """
     Runs a local web server to test the web app
     """
-    local('cd app/web && python -m SimpleHTTPServer 8080')
+    local('cd app/web && python -m SimpleHTTPServer 8000')
 
