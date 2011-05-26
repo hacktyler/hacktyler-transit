@@ -4,9 +4,9 @@
     <mapcanvas>
         <units>degrees</units>
         <extent>
-            <xmin>-95.403818</xmin>
+            <xmin>-95.402527</xmin>
             <ymin>32.263666</ymin>
-            <xmax>-95.194397</xmax>
+            <xmax>-95.193151</xmax>
             <ymax>32.383513</ymax>
         </extent>
         <projections>1</projections>
@@ -313,8 +313,8 @@
                     <lowervalue></lowervalue>
                     <uppervalue></uppervalue>
                     <label></label>
-                    <pointsymbol>hard:circle</pointsymbol>
-                    <pointsize>2</pointsize>
+                    <pointsymbol>svg:/transport/transport_bus_stop.svg</pointsymbol>
+                    <pointsize>4</pointsize>
                     <pointsizeunits>pixels</pointsizeunits>
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
@@ -349,6 +349,16 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
+            <edittypes>
+                <edittype type="0" name="CROSS_ST"/>
+                <edittype type="0" name="FLAG"/>
+                <edittype type="0" name="LANDMARK"/>
+                <edittype type="0" name="LINE"/>
+                <edittype type="0" name="ORDER"/>
+                <edittype type="0" name="SHELTER"/>
+                <edittype type="0" name="SIGN"/>
+                <edittype type="0" name="STOP_ST"/>
+            </edittypes>
             <editform></editform>
             <editforminit></editforminit>
             <annotationform></annotationform>
