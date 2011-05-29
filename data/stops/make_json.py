@@ -4,6 +4,7 @@ import csv
 import json
 
 stops = [] 
+slugs = []
 
 with open('bus-stops.csv', 'r') as f:
     reader = csv.DictReader(f)
@@ -20,7 +21,15 @@ with open('bus-stops.csv', 'r') as f:
         
         # Append a few useful attributes
         row['line-slug'] = row['line'].replace(' ', '-').lower()
-        row['slug'] = (row['stop_street'] + '_' + row['next_cross_street']).replace(' ', '_').lower()
+        
+        slug = (row['stop_street'] + '_' + row['next_cross_street']).replace(' ', '_').lower()
+
+        # Prevent slug name collisions
+        while slug in slugs:
+            # TODO
+            pass
+
+        row['slug'] = slug
 
         stops.append(row)
 

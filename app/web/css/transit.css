@@ -1,17 +1,7 @@
-header h1 {
-    margin-top: 20px;
-}
+header h1 { margin-top: 20px; }
 
-#lines div {
-    width: 100%;
-}
-
-#lines .button {
-    width: 45%;
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 18px;
-}
+#lines div { width: 100%; }
+#lines .button { width: 45%; text-align: center; margin-bottom: 5px; font-size: 18px; }
 
 #lines .red {
     background: #eee; /* Old browsers */
@@ -53,6 +43,6 @@ header h1 {
     background: linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,255,0,.5) 100%); /* W3C */
 }
 
-#stops li {
-    font-size: 18px;
-}
+#stops .stop { font-size: 18px; }
+
+#detail .line { font-size: 20px; color: #999; }

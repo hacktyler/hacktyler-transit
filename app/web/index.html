@@ -25,32 +25,48 @@
                 <hr />
             </header>
             
-            <section id="content">
-                <div id="lines">
-                    <a id="red-line-north" class="button red">Red Line North</a>
-                    <a id="red-line-south" class="button red">Red Line South</a>
-                    <a id="blue-line-northwest" class="button blue">Blue Line Northwest</a>
-                    <a id="blue-line-southwest" class="button blue">Blue Line Southwest</a><br />
-                    <a id="green-line-northeast" class="button green">Green Line Northeast</a>
-                    <a id="green-line-southeast" class="button green">Green Line Southeast</a><br />
-                    <a id="yellow-line-southwest" class="button yellow">Yellow Line Southwest</a>
-                    <a id="yellow-line-southeast" class="button yellow">Yellow Line Southeast</a>
-                </div>
+            <div id="content">
+                <section id="lines" style="display: none;">
+                    <a id="red-line-north" class="button red line">Red Line North</a>
+                    <a id="red-line-south" class="button red line">Red Line South</a>
+                    <a id="blue-line-northwest" class="button blue line">Blue Line Northwest</a>
+                    <a id="blue-line-southwest" class="button blue line">Blue Line Southwest</a><br />
+                    <a id="green-line-northeast" class="button green line">Green Line Northeast</a>
+                    <a id="green-line-southeast" class="button green line">Green Line Southeast</a><br />
+                    <a id="yellow-line-southwest" class="button yellow line">Yellow Line Southwest</a>
+                    <a id="yellow-line-southeast" class="button yellow line">Yellow Line Southeast</a>
+                </section>
 
-                <ul id="stops" style="display: none;"></ul>
+                <section id="stops" style="display: none;">
+                    <a class="button close">&laquo; Back to route list</a>
+                    <ul>
+                    </ul>
+                </section>
 
-                 <section id="detail" style="display: none;"></section>
-            </section>
+                <section id="detail" style="display: none;">
+                    <a class="button close">&laquo; Back to stop list</a>
+                    <div class="contents">
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                Footer goes here.
+            </footer>
         </div>
     </div>
 
     <script type="text/template" id="stop-list-item-template"> 
-        <div class="<%= slug %>" id=class="view"><%= stop_street %> / <%= next_cross_street %></div>
+        <li id="<%= slug %>" class="stop"><%= stop_street %> / <%= next_cross_street %></li>
     </script> 
 
     <script type="text/template" id="stop-detail-template"> 
-        <h2><%= stop_street %></h2>
-        <a class="close">&laquo; Back to stop list</a>
+        <h2><%= stop_street %> <% if (next_cross_street != "") { %>& <%= next_cross_street %><% } %> <span class="line"><%= line %></span></h2>
+        <div class="map">Map goes here.</div>
+        <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
+        <% if (shelter != "") { %><strong>There is a bus shelter at this stop.</strong><br /><% } %>
+        <% if (sign != "") { %><strong>There is a sign marking this stop.</strong><br /><% } %>
+        <% if (flag != "") { %><strong>There is a flag marking this stop.</strong><% } %>
     </script>
 
     <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script> 

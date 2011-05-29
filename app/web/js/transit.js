@@ -12,147 +12,71 @@ $(function() {
         platform = 'blackberry';
     }
 
-    window.Stop = Backbone.Model.extend({});
+    window.STOP_LIST_ITEM_TEMPLATE = _.template($('#stop-list-item-template').html());
+    window.STOP_DETAIL_TEMPLATE = _.template($('#stop-detail-template').html());
 
-    window.StopCollection = Backbone.Collection.extend({
-        url: "/data/bus-stops.js",
-        model: Stop,
-    });
+    window.currentStop = null;
 
-    window.Stops = new StopCollection(TRANSIT_STOPS);
+    function addStops(data) {
+        _.each(data, function(stop) {
+            $("#stops ul").prepend(STOP_LIST_ITEM_TEMPLATE(stop));
+        });
+        
+        $('#stops .stop').click(function() {
+            window.location.hash = "stop/" + $(this).attr("id");
+        });
+    }
 
-    window.StopListItemView = Backbone.View.extend({
-        tagName: "li",
-        template: _.template($('#stop-list-item-template').html()),
+    function showLines() { 
+        $("#detail").hide();
+        $("#stops").hide();
+        $("#lines").show();
 
-        events: {
-            "click": "view",
-        },
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
 
-        initialize: function() {
-            _.bindAll(this, 'render');
-            this.model.bind('change', this.render);
-        },
+    function showStops(line_slug) {
+        // Show stops for the selected line
+        _.each(TRANSIT_STOPS, function(stop) {
+            if (stop["line-slug"] == line_slug) {
+                $("#" + stop["slug"]).show();
+            } else {
+                $("#" + stop["slug"]).hide();
+            }
+        });
 
-        render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
+        $("#lines").hide();
+        $("#detail").hide();
+        $("#stops").show();
 
-            return this;
-        },
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
 
-        view: function() {
-            window.location.hash = "stop/" + this.model.get('slug');
-        },
-
-        hide: function () {
-            $("#" + this.model.get('slug')).hide();
-        },
-
-        show: function() {
-            $("#" + this.model.get('slug')).show();
+    function viewStop(stop) {
+        if (stop === null) {
+            throw("No stop provided!");
         }
-    });
 
-    window.StopDetailView = Backbone.View.extend({
-        tagName: "div",
-        template: _.template($('#stop-detail-template').html()),
+        $("#lines").hide();
+        $("#stops").hide();
+        $("#detail .contents").html(STOP_DETAIL_TEMPLATE(stop));
+        $("#detail").show();
 
-        events: {
-            "click .close": "close"
-        },
-
-        initialize: function() {
-            _.bindAll(this, 'render');
-            this.model.bind('change', this.render);
-            this.model.view = this;
-        },
-
-        render: function() {
-            $(this.el).html(this.template(this.model.toJSON()));
-            return this;
-        },
-
-        close: function() {
-            window.location.hash = "line/" + this.model.get('line-slug');
-        }
-    });
-
-    window.AppView = Backbone.View.extend({
-        el: $("#content"),
-        models: {},
-        liviews: {},
-        currentStopSlug: null,
-
-        initialize: function() {
-            _.bindAll(this, 'addStop', 'addStops', 'render');
-            
-            Stops.bind('add', this.addStop);
-            Stops.bind('refresh', this.addStops);
-            Stops.bind('all', this.render);
-            Stops.fetch();
-        },
-
-        addStop: function(stop) {
-            var view = new StopListItemView({ model: stop });
-            this.models[stop.get('slug')] = stop;
-            this.liviews[stop.get('slug')] = view;
-            this.$("#stops").prepend(view.render().el);
-        },
-
-        addStops: function() {
-            Stops.each(this.addStop);
-        },
-
-        showLines: function() { 
-            this.$("#detail").hide();
-            this.$("#stops").hide();
-            this.$("#lines").show();
-
-            $(window).scrollTop(0)
-            this.currentStopSlug = null;
-        },
-
-        showStops: function(line) {
-            Stops.each(function(stop, index, list) {
-                if (stop.get('line-slug') == line) {
-                    App.liviews[stop.get('slug')].show();
-                } else {
-                    App.liviews[stop.get('slug')].hide();
-                }
+        $(window).scrollTop(0);
+        currentStop = stop;
+    }
+    
+    function viewStopBySlug(slug) {
+        var stop = _.detect(TRANSIT_STOPS, function(stop) {
+                return stop["slug"] == slug;
             });
 
-            this.$("#lines").hide();
-            this.$("#detail").hide();
-            this.$("#stops").show();
-
-            $(window).scrollTop(0)
-            this.currentStopSlug = null;
-        },
-
-        viewStop: function(stop) {
-            if (stop == null) {
-                throw("No stop provided!");
-            }
-
-            var view = new StopDetailView({ model: stop });
-
-            this.$("#lines").hide();
-            this.$("#stops").hide();
-            this.$("#detail").html(view.render().el).show();
-
-            $(window).scrollTop(0);
-            this.currentStopSlug = stop.get('slug');
-        },
-        
-        viewStopBySlug: function(slug) {
-            var stop = this.models[slug];
-            if (stop != null) {
-                this.viewStop(stop);
-            }
-        },
-    });
-
-    window.App = new AppView;
+        if (stop != null) {
+            viewStop(stop);
+        }
+    }
 
     window.StopController = Backbone.Controller.extend({
         routes: {
@@ -162,29 +86,38 @@ $(function() {
         },
 
         lines: function() {
-            App.showLines();
+            showLines();
         },
 
         line: function(line) {
-            App.showStops(line);
+            showStops(line);
         },
 
         stop: function(stop) {
-            App.viewStopBySlug(stop);
+            viewStopBySlug(stop);
         },
     });
 
     window.Controller = new StopController();
 
+
     $('header h1').click(function() {
         window.location.hash = "";
     });
 
-    $('#lines a').click(function() {
+    $('#lines .line').click(function() {
         window.location.hash = "line/" + $(this).attr("id");
     });
 
-    window.App.addStops();
+    $('#stops .close').click(function() {
+        window.location.hash = "";
+    });
+
+    $('#detail .close').click(function() {
+        window.location.hash = "line/" + currentStop["line-slug"];
+    });
+
+    addStops(TRANSIT_STOPS);
     Backbone.history.start();
 });
 

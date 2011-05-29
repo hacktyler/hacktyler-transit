@@ -4,10 +4,10 @@
     <mapcanvas>
         <units>degrees</units>
         <extent>
-            <xmin>-95.402527</xmin>
-            <ymin>32.263666</ymin>
-            <xmax>-95.193151</xmax>
-            <ymax>32.383513</ymax>
+            <xmin>-95.453344</xmin>
+            <ymin>32.225380</ymin>
+            <xmax>-95.150882</xmax>
+            <ymax>32.398472</ymax>
         </extent>
         <projections>1</projections>
         <destinationsrs>
@@ -314,7 +314,7 @@
                     <uppervalue></uppervalue>
                     <label></label>
                     <pointsymbol>svg:/transport/transport_bus_stop.svg</pointsymbol>
-                    <pointsize>4</pointsize>
+                    <pointsize>3.5</pointsize>
                     <pointsizeunits>pixels</pointsizeunits>
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
@@ -394,7 +394,7 @@
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
                     <symbolfieldname></symbolfieldname>
-                    <outlinecolor red="147" blue="185" green="38"/>
+                    <outlinecolor red="170" blue="127" green="170"/>
                     <outlinestyle>SolidLine</outlinestyle>
                     <outlinewidth>0.26</outlinewidth>
                     <fillcolor red="0" blue="0" green="0"/>
@@ -424,6 +424,45 @@
                 <multilineenabled fieldname="" on=""/>
                 <selectedonly on=""/>
             </labelattributes>
+            <edittypes>
+                <edittype type="0" name="ADDR_MAX"/>
+                <edittype type="0" name="ADDR_MIN"/>
+                <edittype type="0" name="ALT_NAME"/>
+                <edittype type="0" name="CITY_L"/>
+                <edittype type="0" name="CITY_R"/>
+                <edittype type="0" name="COUNTY_L"/>
+                <edittype type="0" name="COUNTY_R"/>
+                <edittype type="0" name="DBL_ID"/>
+                <edittype type="0" name="ESN_L"/>
+                <edittype type="0" name="ESN_R"/>
+                <edittype type="0" name="EXCH_L"/>
+                <edittype type="0" name="EXCH_R"/>
+                <edittype type="0" name="FROM_LEFT"/>
+                <edittype type="0" name="FROM_RIGHT"/>
+                <edittype type="0" name="FULLNAME"/>
+                <edittype type="0" name="GEO_PRETYP"/>
+                <edittype type="0" name="GEO_STREET"/>
+                <edittype type="0" name="MILE"/>
+                <edittype type="0" name="MSAG_COMM1"/>
+                <edittype type="0" name="MSAG_COMM_"/>
+                <edittype type="0" name="ONE_WAY"/>
+                <edittype type="0" name="POSTAL_L"/>
+                <edittype type="0" name="POSTAL_R"/>
+                <edittype type="0" name="POST_DIR"/>
+                <edittype type="0" name="PRE_DIR"/>
+                <edittype type="0" name="RD_NUM"/>
+                <edittype type="0" name="RD_TYPE"/>
+                <edittype type="0" name="SHAPE_STLe"/>
+                <edittype type="0" name="SPEED"/>
+                <edittype type="0" name="STATE_L"/>
+                <edittype type="0" name="STATE_R"/>
+                <edittype type="0" name="STREET"/>
+                <edittype type="0" name="SUFFIX"/>
+                <edittype type="0" name="TO_LEFT"/>
+                <edittype type="0" name="TO_RIGHT"/>
+                <edittype type="0" name="ZIP_L"/>
+                <edittype type="0" name="ZIP_R"/>
+            </edittypes>
             <editform></editform>
             <editforminit></editforminit>
             <annotationform></annotationform>
@@ -534,7 +573,7 @@
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
                     <symbolfieldname></symbolfieldname>
-                    <outlinecolor red="170" blue="127" green="255"/>
+                    <outlinecolor red="55" blue="89" green="177"/>
                     <outlinestyle>SolidLine</outlinestyle>
                     <outlinewidth>1</outlinewidth>
                     <fillcolor red="0" blue="0" green="0"/>
@@ -638,7 +677,7 @@
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
                     <symbolfieldname></symbolfieldname>
-                    <outlinecolor red="85" blue="0" green="170"/>
+                    <outlinecolor red="62" blue="0" green="124"/>
                     <outlinestyle>SolidLine</outlinestyle>
                     <outlinewidth>1</outlinewidth>
                     <fillcolor red="0" blue="0" green="0"/>
@@ -1054,7 +1093,7 @@
                     <rotationclassificationfieldname></rotationclassificationfieldname>
                     <scaleclassificationfieldname></scaleclassificationfieldname>
                     <symbolfieldname></symbolfieldname>
-                    <outlinecolor red="170" blue="0" green="170"/>
+                    <outlinecolor red="207" blue="0" green="207"/>
                     <outlinestyle>SolidLine</outlinestyle>
                     <outlinewidth>1</outlinewidth>
                     <fillcolor red="0" blue="0" green="0"/>
