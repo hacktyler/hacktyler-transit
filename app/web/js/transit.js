@@ -28,8 +28,7 @@ $(function() {
     }
 
     function showLines() { 
-        $("#detail").hide();
-        $("#stops").hide();
+        $(".page").hide()
         $("#lines").show();
 
         $(window).scrollTop(0)
@@ -46,8 +45,7 @@ $(function() {
             }
         });
 
-        $("#lines").hide();
-        $("#detail").hide();
+        $(".page").hide()
         $("#stops").show();
 
         $(window).scrollTop(0)
@@ -59,8 +57,7 @@ $(function() {
             throw("No stop provided!");
         }
 
-        $("#lines").hide();
-        $("#stops").hide();
+        $(".page").hide()
         $("#detail .contents").html(STOP_DETAIL_TEMPLATE(stop));
         $("#detail").show();
 
