@@ -1,48 +1,37 @@
-header h1 { margin-top: 20px; }
+/* General */
+html, body { height: 100%; }
+#not-footer { min-height: 100%; }
 
-#lines div { width: 100%; }
-#lines .button { width: 45%; text-align: center; margin-bottom: 5px; font-size: 18px; }
+#container { width: 960px; position: relative; margin: 0 auto; padding: 0 0 30px 0; overflow:auto; }
 
-#lines .red {
-    background: #eee; /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(210,210,210,.2) 0%, rgba(255,0,0,.5) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,0,0,.5)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,0,0,.5) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(210,255,255,.2) 0%,rgba(255,0,0,.5) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,0,0,.5) 100%); /* IE10+ */
-    background: linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,0,0,.5) 100%); /* W3C */
-}
+footer { width: 960px; position: relative; margin: -30px auto 0 auto; height: 30px; clear:both; } 
 
-#lines .blue {
-    background: #eee; /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(210,210,210,.2) 0%, rgba(0,0,255,.5) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,255,.5)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,0,255,.5) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,0,255,.5) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,0,255,.5) 100%); /* IE10+ */
-    background: linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,0,255,.5) 100%); /* W3C */
-}
+/* Content */
+header h1 { padding-top: 20px; }
 
-#lines .green {
-    background: #eee; /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(210,210,210,.2) 0%, rgba(0,255,0,.5) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,255,0,.5)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,255,0,.5) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,255,0,.5) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,255,0,.5) 100%); /* IE10+ */
-    background: linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(0,255,0,.5) 100%); /* W3C */
-}
-
-#lines .yellow {
-    background: #eee; /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(210,210,210,.2) 0%, rgba(255,255,0,.5) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,0,.5)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,255,0,.5) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,255,0,.5) 100%); /* Opera11.10+ */
-    background: -ms-linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,255,0,.5) 100%); /* IE10+ */
-    background: linear-gradient(top, rgba(210,210,210,.2) 0%,rgba(255,255,0,.5) 100%); /* W3C */
-}
+#lines .line { font-size: 18px; }
 
 #stops .stop { font-size: 18px; }
 
 #detail .line { font-size: 20px; color: #999; }
+
+/* iPad Portrait/Browser */
+@media only screen and (min-width: 768px) and (max-width: 991px) {}
+
+/* Mobile/Browser */
+@media only screen and (max-width: 767px) {}
+
+/* Mobile Landscape/Browser */
+@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+/* Anything smaller than standard 960 */
+@media only screen and (max-width: 959px) {}
+
+/* iPad Portrait Only */
+@media only screen and (min-width: 768px) and (max-width: 991px) and (max-device-width: 1000px) {}
+
+/* Mobile Only */
+@media only screen and (max-width: 767px) and (max-device-width: 1000px) {}
+
+/* Mobile Landscape Only */
+@media only screen and (min-width: 480px) and (max-width: 767px) and (max-device-width: 1000px) {}

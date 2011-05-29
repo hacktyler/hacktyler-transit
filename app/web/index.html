@@ -7,8 +7,6 @@
 	<meta name="author" content="TODO">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"> 
     <link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/transit.css">
     
     <link rel="shortcut icon" href="images/favicon.ico" />
@@ -17,9 +15,8 @@
 	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png" 
 </head>
 <body>
-
-    <div class="container">
-        <div class="sixteen columns">
+    <div id="not-footer">
+        <div id="container">
             <header>
                 <h1>Hack Tyler Transit</h1>
                 <hr />
@@ -27,14 +24,16 @@
             
             <div id="content">
                 <section id="lines" style="display: none;">
-                    <a id="red-line-north" class="button red line">Red Line North</a>
-                    <a id="red-line-south" class="button red line">Red Line South</a>
-                    <a id="blue-line-northwest" class="button blue line">Blue Line Northwest</a>
-                    <a id="blue-line-southwest" class="button blue line">Blue Line Southwest</a><br />
-                    <a id="green-line-northeast" class="button green line">Green Line Northeast</a>
-                    <a id="green-line-southeast" class="button green line">Green Line Southeast</a><br />
-                    <a id="yellow-line-southwest" class="button yellow line">Yellow Line Southwest</a>
-                    <a id="yellow-line-southeast" class="button yellow line">Yellow Line Southeast</a>
+                    <ul>
+                        <li id="red-line-north" class="line">Red Line North</li>
+                        <li id="blue-line-northwest" class="line">Blue Line Northwest</li>
+                        <li id="green-line-northeast" class="line">Green Line Northeast</li>
+                        <li id="yellow-line-southwest" class="line">Yellow Line Southwest</li>
+                        <li id="red-line-south" class="line">Red Line South</li>
+                        <li id="blue-line-southwest" class="line">Blue Line Southwest</li>
+                        <li id="green-line-southeast" class="line">Green Line Southeast</li>
+                        <li id="yellow-line-southeast" class="line">Yellow Line Southeast</li>
+                    </ul>
                 </section>
 
                 <section id="stops" style="display: none;">
@@ -49,12 +48,11 @@
                     </div>
                 </section>
             </div>
-
-            <footer>
-                Footer goes here.
-            </footer>
         </div>
     </div>
+    <footer>
+        Footer goes here.
+    </footer>
 
     <script type="text/template" id="stop-list-item-template"> 
         <li id="<%= slug %>" class="stop"><%= stop_street %> / <%= next_cross_street %></li>
