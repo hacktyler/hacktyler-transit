@@ -10,6 +10,10 @@ with open('bus-stops.csv', 'r') as f:
     reader = csv.DictReader(f)
 
     for row in reader:
+        # Don't serialize endpoints (they duplicate first stop)
+        if row['order'] == 'END':
+            continue
+
         # Fix up types for client
         row['order'] = int(row['order'])
         row['shelter'] = (row['shelter'] == 'TRUE')
