@@ -22,14 +22,22 @@ fields = {
     'LANDMARK': ogr.OFTString,
     'SHELTER': ogr.OFTString,
     'SIGN': ogr.OFTString,
-    'FLAG': ogr.OFTString
+    'FLAG': ogr.OFTString,
+    'GEOCODE': ogr.OFTString,
+    'LATITUDE': ogr.OFTReal,
+    'LONGITUDE': ogr.OFTReal,
+    'TRANSFER': ogr.OFTString,
+    'WEEKDAY': ogr.OFTString,
+    'SATURDAY': ogr.OFTString,
+    'OFC_TIMES': ogr.OFTString,
+    'NOTES': ogr.OFTString,
 }
 
 for name, ogr_type in fields.items():
     field = ogr.FieldDefn(name, ogr_type)
     stops.CreateField(field)
 
-with open('bus-stops.csv', 'r') as f:
+with open('bus-stops-schedule.csv', 'r') as f:
     reader = csv.DictReader(f)
 
     for row in reader:
@@ -49,6 +57,14 @@ with open('bus-stops.csv', 'r') as f:
         feature.SetField('SHELTER', row['shelter'])
         feature.SetField('SIGN', row['sign'])
         feature.SetField('FLAG', row['flag'])
+        feature.SetField('GEOCODE', row['geocoded_address'])
+        feature.SetField('LATITUDE', row['latitude'])
+        feature.SetField('LONGITUDE', row['longitude'])
+        feature.SetField('TRANSFER', row['transfer_to'])
+        feature.SetField('WEEKDAY', row['weekday_schedule'])
+        feature.SetField('SATURDAY', row['saturday_schedule'])
+        feature.SetField('OFC_TIMES', row['has_official_times'])
+        feature.SetField('NOTES', row['notes'])
 
         wkt = "POINT(%s %s)" % (row['longitude'], row['latitude'])
         point = ogr.CreateGeometryFromWkt(wkt)

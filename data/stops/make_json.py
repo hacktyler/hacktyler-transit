@@ -6,7 +6,7 @@ import json
 stops = [] 
 slugs = []
 
-with open('bus-stops.csv', 'r') as f:
+with open('bus-stops-schedule.csv', 'r') as f:
     reader = csv.DictReader(f)
 
     for row in reader:
