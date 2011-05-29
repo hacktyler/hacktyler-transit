@@ -25,10 +25,15 @@ with open('bus-stops.csv', 'r') as f:
         slug = (row['stop_street'] + '_' + row['next_cross_street']).replace(' ', '_').lower()
 
         # Prevent slug name collisions
-        while slug in slugs:
-            # TODO
-            pass
+        if slug in slugs:
+            n = 2
 
+            while '%s_%i' % (slug, n) in slugs:
+                n += 1
+
+            slug = '%s_%i' % (slug, n)
+
+        slugs.append(slug)
         row['slug'] = slug
 
         stops.append(row)

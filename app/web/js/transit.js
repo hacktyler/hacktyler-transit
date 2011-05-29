@@ -18,8 +18,8 @@ $(function() {
     window.currentStop = null;
 
     function addStops(data) {
-        _.each(data, function(stop) {
-            $("#stops ul").prepend(STOP_LIST_ITEM_TEMPLATE(stop));
+        _.each(data, function(stop, index) {
+            var elem = $("#stops ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
         });
         
         $('#stops .stop').click(function() {
@@ -36,12 +36,20 @@ $(function() {
     }
 
     function showStops(line_slug) {
+        var i = 1;
+
+        $("#stops .stop").removeClass("even").hide();
+
         // Show stops for the selected line
         _.each(TRANSIT_STOPS, function(stop) {
             if (stop["line-slug"] == line_slug) {
-                $("#" + stop["slug"]).show();
-            } else {
-                $("#" + stop["slug"]).hide();
+                $("#stops #" + stop["slug"]).show();
+
+                if (i % 2 == 0) {
+                    $("#stops #" + stop["slug"]).addClass("even");
+                }
+
+                i += 1;
             }
         });
 
