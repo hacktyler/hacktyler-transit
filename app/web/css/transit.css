@@ -12,12 +12,13 @@ header h1 { padding-top: 20px; cursor: pointer; }
 
 .page { display: none; }
 
-li { margin: 0; padding: 6px 0; }
+li { margin: 0; padding: 10px 0 10px 5px; }
 li.even { background-color: #eee; }
 
 #lines .line { font-size: 18px; cursor: pointer; }
 
 #stops .stop { font-size: 18px; cursor: pointer; }
+#stops .stop .transfer { font-size: 13px; color: #999; }
 
 #detail .line { font-size: 20px; color: #999; }
 
