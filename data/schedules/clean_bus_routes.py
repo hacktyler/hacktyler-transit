@@ -37,20 +37,23 @@ for filename in os.listdir(INPUT_DIR):
             o = [] 
 
             for i, v in enumerate(row):
-                if is_pm[i]:
-                    o.append('%s PM' % v)
-                else:
-                    hour = int(v.split(':')[0])
+                hour, minute = map(int, v.split(':'))
 
-                    if hour == 12 or hour < 6:
-                        o.append('%s PM' % v)
+                if is_pm[i]:
+                    o.append('%i:%i' % (hour + 12, minute))
+                else:
+                    if hour < 6:
+                        o.append('%i:%i' % (hour + 12, minute))
                         is_pm[i] = True
                     else:
-                        o.append('%s AM' % v)
+                        o.append(v)
 
             output.append(o)
+
+    headers = output[0]
+    formatted_output = zip(output[0], [','.join(i) for i in zip(*output[1:])])
                     
     with open(os.path.join(OUTPUT_DIR, filename), 'w') as f:
         writer = csv.writer(f)
 
-        writer.writerows(output)
+        writer.writerows(formatted_output)
