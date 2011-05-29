@@ -2,27 +2,37 @@
 html, body { height: 100%; }
 #not-footer { min-height: 100%; }
 
-#container { width: 960px; position: relative; margin: 0 auto; padding: 0 0 30px 0; overflow:auto; }
+#container { width: 960px; position: relative; margin: 0 auto; padding: 0 0 35px 0; overflow:auto; }
 
-footer { width: 960px; position: relative; margin: -30px auto 0 auto; height: 30px; clear:both; } 
+footer { width: 960px; position: relative; margin: -35px auto 0 auto; height: 35px; clear:both; background-color: lightgray; }
+footer .credits { width: 100%; padding-top: 7px; padding-left: 7px; }
 
 /* Content */
-header h1 { padding-top: 20px; }
+header h1 { padding-top: 20px; cursor: pointer; }
 
-#lines .line { font-size: 18px; }
+#lines .line { font-size: 18px; cursor: pointer; }
 
-#stops .stop { font-size: 18px; }
+#stops .stop { font-size: 18px; cursor: pointer; }
 
 #detail .line { font-size: 20px; color: #999; }
 
 /* iPad Portrait/Browser */
-@media only screen and (min-width: 768px) and (max-width: 991px) {}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    #container { width: 960px; }
+    footer { width: 960px; }
+}
 
 /* Mobile/Browser */
-@media only screen and (max-width: 767px) {}
+@media only screen and (max-width: 767px) {
+    #container { width: 300px; }
+    footer { width: 300px; }
+}
 
 /* Mobile Landscape/Browser */
-@media only screen and (min-width: 480px) and (max-width: 767px) {}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    #container { width: 420px; }
+    footer { width: 420px; }
+}
 
 /* Anything smaller than standard 960 */
 @media only screen and (max-width: 959px) {}
