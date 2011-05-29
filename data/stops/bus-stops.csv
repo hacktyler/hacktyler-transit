@@ -5,13 +5,13 @@
 "Red Line North",104,"Broadway","Houston","United Healthcare",,"TRUE",,"S Broadway Ave & W Houston St, Tyler, TX 75702, USA",32.3437484,-95.3006179,,,,,
 "Red Line North",106,"Broadway","Elm","Across from Library",,"TRUE",,"S Broadway Ave & W Elm St, Tyler, TX 75702, USA",32.3496758,-95.3006165,,,,,
 "Red Line North",107,"Broadway","Ferguson","Regions Bank",,"TRUE",,"N Broadway Ave & W Ferguson St, Tyler, TX 75702, USA",32.3517199,-95.3006202,,,,,
-"Red Line North",108,"Broadway","Bow","Salvation Army","TRUE","TRUE",,,32.356,-95.3006,,,,,
-"Red Line North",109,"Broadway","Queen","Roberts Juvenile Building",,"TRUE",,"N Broadway Ave & W Queen St, Tyler, TX 75702, USA",32.3615884,-95.3015438,,"6:09,6:35,7:10,7:45,8:30,9:05,9:50,10:25,11:10,11:45,12:30,13:5,13:50,14:25,15:10,15:45,16:30,17:5,17:50,18:20,18:52,19:20,19:50",,"TRUE","Using times for “Broadway and Gentry”, but where is the transfer point?"
+"Red Line North",108,"Broadway","Bow","Salvation Army, Northeast Texas Public Health District, Tyler City Municipal Courts","TRUE","TRUE",,,32.356,-95.3006,"Green Line Northeast","6:09,6:35,7:10,7:45,8:30,9:05,9:50,10:25,11:10,11:45,12:30,13:5,13:50,14:25,15:10,15:45,16:30,17:5,17:50,18:20,18:52,19:20,19:50",,"TRUE","Using times for “Broadway and Gentry”"
+"Red Line North",109,"Broadway","Queen","Roberts Juvenile Building",,"TRUE",,"N Broadway Ave & W Queen St, Tyler, TX 75702, USA",32.3615884,-95.3015438,,,,,
 "Red Line North",110,"Broadway","Cedar",,,"TRUE",,"N Broadway Ave & W Cedar St, Tyler, TX 75702, USA",32.3638406,-95.3015429,,,,,
 "Red Line North",111,"Broadway","Franklin",,,"TRUE",,"N Broadway Ave & W Franklin St, Tyler, TX 75702, USA",32.3663907,-95.3015265,,,,,
-"Red Line North",112,"Broadway","MLK","Iglesia Church",,"TRUE",,"N Broadway Ave & W Martin Luther King Jr Blvd, Tyler, TX 75702, USA",32.3701775,-95.3018846,,,,,
+"Red Line North",112,"Broadway","MLK","Iglesia Church",,"TRUE",,"N Broadway Ave & W Martin Luther King Jr Blvd, Tyler, TX 75702, USA",32.3701775,-95.3018846,"Green Line Northeast",,,,
 "Red Line North",113,"Broadway","Barrett","Christian Teaching",,"TRUE",,"N Broadway Ave & W Barrett St, Tyler, TX 75702, USA",32.3710892,-95.3018776,,,,,
-"Red Line North",114,"Broadway","28th","Liberty Arms Apartments","TRUE","TRUE",,,32.37494,-95.3019,,,,,
+"Red Line North",114,"Broadway","28th","Liberty Arms Apartments","TRUE","TRUE",,,32.3754,-95.3018,,,,,
 "Red Line North",115,"32nd",,"Boys and Girls / Glass Center","TRUE","TRUE",,,32.38066,-95.3056,,,,,
 "Red Line North",116,"32nd","Glass Ave","Woldert Park",,"TRUE",,,32.38064,-95.3076,,,,,
 "Red Line North",117,"32nd","Grande Ave","Before intersection",,"TRUE",,"N Grand Ave & 32nd St, Tyler, TX 75702, USA",32.3806581,-95.3108828,,,,,
@@ -25,7 +25,7 @@
 "Red Line North",125,"MLK","Hill",,,"TRUE",,"W Martin Luther King Jr Blvd & N Hill Ave, Tyler, TX 75702, USA",32.3703262,-95.3174758,,,,,
 "Red Line North",126,"Glenwood","Nancy",,,"TRUE",,"N Glenwood Blvd & Nancy Dr, Tyler, TX 75702, USA",32.3691577,-95.3189973,,,,,
 "Red Line North",127,"Glenwood","Harmony","Dr. Pepper Company",,"TRUE",,,32.366,-95.319,,,,,
-"Red Line North",128,"Glenwood","Gentry","Hickory Fair",,,"TRUE","W Gentry Pkwy & N Glenwood Blvd, Tyler, TX 75702, USA",32.362212,-95.3189802,,"6:17,6:45,7:20,7:52,8:40,9:12,10:00,10:32,11:20,11:52,12:40,13:12,14:0,14:32,15:20,15:52,16:40,17:12,18:0,18:27,18:57,19:27,20:0",,"TRUE",
+"Red Line North",128,"Glenwood","Gentry","Hickory Fare Bar-B-Que",,,"TRUE","W Gentry Pkwy & N Glenwood Blvd, Tyler, TX 75702, USA",32.362212,-95.3189802,"Blue Line Northwest","6:17,6:45,7:20,7:52,8:40,9:12,10:00,10:32,11:20,11:52,12:40,13:12,14:0,14:32,15:20,15:52,16:40,17:12,18:0,18:27,18:57,19:27,20:0",,"TRUE",
 "Red Line North",129,"Gentry","Meadow","Labor Ready",,"TRUE",,"W Gentry Pkwy & Meadow Ln, Tyler, TX 75702, USA",32.3610194,-95.3169634,,,,,
 "Red Line North",130,"Gentry","Bow and Ross","Exxon",,"TRUE",,,32.35951,-95.31407,,,,,
 "Red Line North",131,"Gentry","Palace","Neighborhood Services","TRUE","TRUE",,"W Gentry Pkwy & N Palace Ave, Tyler, TX 75702, USA",32.3596003,-95.310238,,,,,
@@ -82,7 +82,7 @@
 "Blue Line Northwest",306,"Glenwood","Front","ETMC Offices",,,"TRUE","W Front St & S Glenwood Blvd, Tyler, TX 75702, USA",32.3466248,-95.3157294,,"6:05,7:06,8:26,9:46,11:06,12:26,13:46,15:6,16:26,17:46,18:49,19:45",,"TRUE","Using times for “Glenwood and Erwin”"
 "Blue Line Northwest",307,"Glenwood","Loller","Toni Smith Auto",,"TRUE",,"N Glenwood Blvd & W Lollar St, Tyler, TX 75702, USA",32.3543677,-95.3192131,,,,,
 "Blue Line Northwest",308,"Glenwood","Forest","Fun Forrest",,"TRUE",,"N Glenwood Blvd & Forest Ave, Tyler, TX 75702, USA",32.3615431,-95.3189978,,,,,
-"Blue Line Northwest",309,"Gentry","Glenwood","Hickory Fare Rest","TRUE","TRUE",,"W Gentry Pkwy & N Glenwood Blvd, Tyler, TX 75702, USA",32.362212,-95.3189802,,,,,
+"Blue Line Northwest",309,"Gentry","Glenwood","Hickory Fare Bar-B-Que","TRUE","TRUE",,"W Gentry Pkwy & N Glenwood Blvd, Tyler, TX 75702, USA",32.362212,-95.3189802,"Red Line North",,,,
 "Blue Line Northwest",310,"Gentry","Parkdale Drive","Ace Check Cashing",,"TRUE",,"W Gentry Pkwy & N Parkdale Dr, Tyler, TX 75702, USA",32.3654033,-95.3235981,,,,,
 "Blue Line Northwest",311,"Gentry","MLK","Zoo",,"TRUE",,"W Gentry Pkwy & W Martin Luther King Jr Blvd, Tyler, TX 75702, USA",32.3674433,-95.3269754,,,,,
 "Blue Line Northwest",312,"Gentry","Glenwood","Taco Bell",,"TRUE",,"Rte 110 & Van Hwy & W Gentry Pkwy, Tyler, TX 75702, USA",32.3696847,-95.3311067,,,,,
@@ -151,10 +151,10 @@
 "Green Line Northeast",512,"MLK","Haynie",,,"TRUE",,,,,,,,,
 "Green Line Northeast",513,"MLK","Church St",,,"TRUE",,"E Martin Luther King Jr Blvd & Church Ave, Tyler, TX 75702, USA",32.370168,-95.297117,,,,,
 "Green Line Northeast",514,"MLK","North Spring",,,"TRUE",,"E Martin Luther King Jr Blvd & N Spring Ave, Tyler, TX 75702, USA",32.3701724,-95.299637,,,,,
-"Green Line Northeast",515,"Broadway","Nutbush","Rail Road Crossing",,"TRUE",,"N Broadway Ave & W Nutbush St, Tyler, TX 75702, USA",32.3691466,-95.3018669,,"6:15,7:15,8:35,9:55,11:15,12:35,13:55,15:15,16:35,17:55,18:58,19:58",,"TRUE","Using times for “Broadway and MLK”"
+"Green Line Northeast",515,"Broadway","Nutbush","Rail Road Crossing",,"TRUE",,"N Broadway Ave & W Nutbush St, Tyler, TX 75702, USA",32.3691466,-95.3018669,"Red Line North","6:15,7:15,8:35,9:55,11:15,12:35,13:55,15:15,16:35,17:55,18:58,19:58",,"TRUE","Using times for “Broadway and MLK”"
 "Green Line Northeast",516,"Broadway","Cedar",,,"TRUE",,"N Broadway Ave & W Cedar St, Tyler, TX 75702, USA",32.3638406,-95.3015429,,,,,
 "Green Line Northeast",517,"Broadway","Queen","City Park",,"TRUE",,"N Broadway Ave & W Queen St, Tyler, TX 75702, USA",32.3615884,-95.3015438,,,,,
-"Green Line Northeast",518,"Gentry","Broadway","Health District",,"TRUE",,"W Gentry Pkwy & N Broadway Ave, Tyler, TX 75702, USA",32.359458,-95.3012504,,,,,
+"Green Line Northeast",518,"Gentry","Broadway","Salvation Army, Northeast Texas Public Health District, Tyler City Municipal Courts",,"TRUE",,"W Gentry Pkwy & N Broadway Ave, Tyler, TX 75702, USA",32.359458,-95.3012504,"Red Line North",,,,
 "Green Line Northeast",519,"Gentry","Beckham","Old WIC Office",,"TRUE",,"E Gentry Pkwy & N Beckham Ave, Tyler, TX 75702, USA",32.3598945,-95.2934023,,,,,
 "Green Line Northeast",520,"Oakwood","Spring","Tyler Transit Office",,"TRUE",,,32.3546,-95.29935,,,,,
 "Green Line Northeast",521,"Beckham","Locust","Mexican Meat Market",,"TRUE",,"N Beckham Ave & E Locust St, Tyler, TX 75702, USA",32.352632,-95.2943695,,,,,
