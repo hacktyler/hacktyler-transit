@@ -27,6 +27,14 @@ $(function() {
         });
     }
 
+    function showHome() {
+        $(".page").hide()
+        $("#home").show();
+
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
+
     function showLines() { 
         $(".page").hide()
         $("#lines").show();
@@ -163,9 +171,14 @@ $(function() {
 
     window.StopController = Backbone.Controller.extend({
         routes: {
-            "": "lines",
+            "": "home",
+            "find": "lines",
             "line/:line": "line",
             "stop/:stop": "stop",
+        },
+
+        home: function() {
+            showHome();
         },
 
         lines: function() {
@@ -187,12 +200,20 @@ $(function() {
         window.location.hash = "";
     });
 
+    $("#find-a-stop").click(function() {
+        window.location.hash = "find";
+    });
+
     $('#lines .line').click(function() {
         window.location.hash = "line/" + $(this).attr("id");
     });
 
-    $('#stops .close').click(function() {
+    $("#lines .close").click(function() {
         window.location.hash = "";
+    });
+
+    $('#stops .close').click(function() {
+        window.location.hash = "find";
     });
 
     $('#detail .close').click(function() {
