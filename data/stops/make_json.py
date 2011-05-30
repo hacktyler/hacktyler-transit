@@ -22,6 +22,18 @@ with open('bus-stops-schedule.csv', 'r') as f:
 
         row['latitude'] = float(row['latitude']) if row['latitude'] else None
         row['longitude'] = float(row['longitude'])  if row['longitude'] else None
+
+        def format_time(t):
+            h, m = map(int, t.split(':'))
+            if h > 12:
+                return '%i:%i PM' % (h - 12, m)
+            elif h == 12:
+                return '%i:%i PM' % (h, m)
+            else:
+                return '%i:%i AM' % (h, m)
+
+        row['weekday_schedule'] = map(format_time, row['weekday_schedule'].split(','))
+        print row['weekday_schedule']
         
         # Append a few useful attributes
         row['line-slug'] = row['line'].replace(' ', '-').lower()

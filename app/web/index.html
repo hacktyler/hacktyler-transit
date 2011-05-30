@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <title>Hack Tyler Transit</title>
-    <meta name="description" content="TODO">
-	<meta name="author" content="TODO">
+    <meta name="description" content="Time-tables for buses in Tyler, Texas.">
+	<meta name="author" content="Hack Tyler">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"> 
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/transit.css">
@@ -26,12 +26,12 @@
                 <section id="lines" class="page">
                     <ul>
                         <li id="red-line-north" class="line">Red Line North</li>
-                        <li id="blue-line-northwest" class="line even">Blue Line Northwest</li>
-                        <li id="green-line-northeast" class="line">Green Line Northeast</li>
-                        <li id="yellow-line-southwest" class="line even">Yellow Line Southwest</li>
-                        <li id="red-line-south" class="line">Red Line South</li>
+                        <li id="red-line-south" class="line even">Red Line South</li>
+                        <li id="blue-line-northwest" class="line">Blue Line Northwest</li>
                         <li id="blue-line-southwest" class="line even">Blue Line Southwest</li>
-                        <li id="green-line-southeast" class="line">Green Line Southeast</li>
+                        <li id="green-line-northeast" class="line">Green Line Northeast</li>
+                        <li id="green-line-southeast" class="line even">Green Line Southeast</li>
+                        <li id="yellow-line-southwest" class="line">Yellow Line Southwest</li>
                         <li id="yellow-line-southeast" class="line even">Yellow Line Southeast</li>
                     </ul>
                 </section>
@@ -40,12 +40,14 @@
                     <a class="button close">&laquo; Back to route list</a>
                     <ul>
                     </ul>
+                    <a class="button close">&laquo; Back to route list</a>
                 </section>
 
                 <section id="detail" class="page">
                     <a class="button close">&laquo; Back to stop list</a>
                     <div class="contents">
                     </div>
+                    <a class="button close">&laquo; Back to stop list</a>
                 </section>
             </div>
         </div>
@@ -62,6 +64,18 @@
         <h2><%= stop_street %> <% if (next_cross_street != "") { %>& <%= next_cross_street %><% } %> <span class="line"><%= line %></span></h2>
         <div class="map">Map goes here.</div>
         <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
+
+        <h3>Departures</h3>
+        <ul class="departures">
+            <% _.each(weekday_schedule, function(time, index) { %>
+                <% if (time === next_departure) { %>
+                    <li class="next"><%= time %> <span class="delta">(<%= next_departure_in %> minutes)</span></li>
+                <% } else { %>
+                    <li class="<% if (index % 2 == 0) { print('even'); }; %>"><%= time %> </li>
+                <% } %>
+            <% }); %>
+        </ul>
+
         <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
         <% if (shelter != "") { %><strong>There is a bus shelter at this stop.</strong><br /><% } %>
         <% if (sign != "") { %><strong>There is a sign marking this stop.</strong><br /><% } %>

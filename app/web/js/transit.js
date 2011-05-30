@@ -65,6 +65,42 @@ $(function() {
             throw("No stop provided!");
         }
 
+        var weekday_schedule = _.map(stop["weekday_schedule"], function(time) {
+            ampm = time.substr(time.length - 2, 2);
+            no_ampm = time.substr(0, time.length - 3);
+            parts = no_ampm.split(":");
+            hours = parseInt(parts[0]);
+            minutes = parseInt(parts[1]);
+
+            if (ampm == "PM" && hours != "12") {
+                hours += 12;
+            }
+
+            d = new Date(); 
+            d.setHours(hours);
+            d.setMinutes(minutes);
+            d.setSeconds(0);
+            d.setMilliseconds(0);
+
+            return d;
+        });
+
+        var now = new Date();
+
+        var next_departure = _.detect(weekday_schedule, function(time) {
+            return time > now;
+        });
+
+        if (next_departure === null) {
+            stop["next_departure"] = null;
+            stop["next_departure_in"] = null;
+        } else {
+            stop["next_departure"] = stop["weekday_schedule"][weekday_schedule.indexOf(next_departure)]
+
+            var delta = next_departure.getTime() - now.getTime();
+            stop["next_departure_in"] = Math.floor((delta / 1000) / 60);
+        }
+
         $(".page").hide()
         $("#detail .contents").html(STOP_DETAIL_TEMPLATE(stop));
         $("#detail").show();
