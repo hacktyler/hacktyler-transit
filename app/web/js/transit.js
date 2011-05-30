@@ -101,8 +101,21 @@ $(function() {
             stop["next_departure_in"] = Math.floor((delta / 1000) / 60);
         }
 
+        stop["is_favorite"] = isFavorite(stop["slug"]);
+
         $(".page").hide()
         $("#detail .contents").html(STOP_DETAIL_TEMPLATE(stop));
+
+        $('#detail .favorite').click(function() {
+            if (isFavorite(stop["slug"]) === true) {
+                removeStopFromFavorites(stop["slug"]);
+                $(this).text("Add to favorites");
+            } else {
+                addStopToFavorites(stop["slug"]);
+                $(this).text("Remove from favorites");
+            }
+        });
+
         $("#detail").show();
 
         $(window).scrollTop(0);
@@ -117,6 +130,35 @@ $(function() {
         if (stop != null) {
             viewStop(stop);
         }
+    }
+
+    function getFavorites() {
+        favs = store.get("favorite_stops");
+
+        if (_.isUndefined(favs)) {
+            favs = new Array();
+        }
+
+        return favs;
+    }
+
+    function isFavorite(slug) {
+        return (_.indexOf(getFavorites(), slug) > -1);
+    }
+
+    function setFavorites(favs) {
+        store.set("favorite_stops", favs);
+    }
+
+    function addStopToFavorites(slug) {
+        favs = getFavorites();
+        favs.push(slug);
+        setFavorites(favs);
+    }
+
+    function removeStopFromFavorites(slug) {
+        favs = getFavorites();
+        setFavorites(_.without(favs, slug));
     }
 
     window.StopController = Backbone.Controller.extend({
@@ -140,7 +182,6 @@ $(function() {
     });
 
     window.Controller = new StopController();
-
 
     $('header h1').click(function() {
         window.location.hash = "";

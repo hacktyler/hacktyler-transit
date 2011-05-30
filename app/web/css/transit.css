@@ -25,6 +25,7 @@ li.even { background-color: #eee; }
 #detail .date { font-size: 20px; color: #999; text-align: right; }
 #detail .departures li { padding: 5px 0 5px 5px; }
 #detail .departures .next { background-color: #feffaf; }
+#detail .asterisk { font-size: 12px; }
 
 /* iPad Portrait/Browser */
 @media only screen and (min-width: 768px) and (max-width: 991px) {

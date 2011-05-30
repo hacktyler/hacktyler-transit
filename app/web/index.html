@@ -81,12 +81,15 @@
             <% }); %>
         </ul>
         <div class="asterisk">*All departure times are estimates based on short timetables published by <a href="http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx">Tyler Transit</a>.</div>
+
+        <a class="button favorite"><% if (is_favorite === true) { %>Remove from<% } else { %>Add to<% } %> favorites</a>
     </script>
 
     <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script> 
     <script type="text/javascript" src="js/underscore-min.js"></script>
     <script type="text/javascript" src="js/underscore.date.min.js"></script>
     <script type="text/javascript" src="js/backbone-min.js"></script> 
+    <script type="text/javascript" src="js/store.min.js"></script> 
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="data/bus-stops.js"></script>
     <script type="text/javascript" src="js/transit.js"></script>
