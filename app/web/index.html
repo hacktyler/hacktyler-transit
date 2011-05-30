@@ -64,8 +64,13 @@
         <h2><%= stop_street %> <% if (next_cross_street != "") { %>& <%= next_cross_street %><% } %> <span class="line"><%= line %></span></h2>
         <div class="map">Map goes here.</div>
         <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
+        
+        <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
+        <% if (shelter != "") { %><strong>There is a bus shelter at this stop.</strong><br /><% } %>
+        <% if (sign != "") { %><strong>There is a sign marking this stop.</strong><br /><% } %>
+        <% if (flag != "") { %><strong>There is a flag marking this stop.</strong><% } %>
 
-        <h3>Departures</h3>
+        <h3>Departures <span class="date">for <% print(_.date().format("dddd, MMMM Do")); %></span></h3>
         <ul class="departures">
             <% _.each(weekday_schedule, function(time, index) { %>
                 <% if (time === next_departure) { %>
@@ -75,15 +80,12 @@
                 <% } %>
             <% }); %>
         </ul>
-
-        <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
-        <% if (shelter != "") { %><strong>There is a bus shelter at this stop.</strong><br /><% } %>
-        <% if (sign != "") { %><strong>There is a sign marking this stop.</strong><br /><% } %>
-        <% if (flag != "") { %><strong>There is a flag marking this stop.</strong><% } %>
+        <div class="asterisk">*All departure times are estimates based on short timetables published by <a href="http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx">Tyler Transit</a>.</div>
     </script>
 
     <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script> 
     <script type="text/javascript" src="js/underscore-min.js"></script>
+    <script type="text/javascript" src="js/underscore.date.min.js"></script>
     <script type="text/javascript" src="js/backbone-min.js"></script> 
     <script type="text/javascript" src="js/config.js"></script>
     <script type="text/javascript" src="data/bus-stops.js"></script>
