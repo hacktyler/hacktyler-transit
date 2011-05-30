@@ -26,11 +26,11 @@ with open('bus-stops-schedule.csv', 'r') as f:
         def format_time(t):
             h, m = map(int, t.split(':'))
             if h > 12:
-                return '%i:%i PM' % (h - 12, m)
+                return '%i:%02i PM' % (h - 12, m)
             elif h == 12:
-                return '%i:%i PM' % (h, m)
+                return '%i:%02i PM' % (h, m)
             else:
-                return '%i:%i AM' % (h, m)
+                return '%i:%02i AM' % (h, m)
 
         row['weekday_schedule'] = map(format_time, row['weekday_schedule'].split(','))
         print row['weekday_schedule']

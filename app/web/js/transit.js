@@ -91,7 +91,7 @@ $(function() {
             return time > now;
         });
 
-        if (next_departure === null) {
+        if (_.isUndefined(next_departure) || next_departure === null) {
             stop["next_departure"] = null;
             stop["next_departure_in"] = null;
         } else {
