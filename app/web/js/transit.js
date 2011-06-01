@@ -19,7 +19,7 @@ $(function() {
 
     function addStops(data) {
         _.each(data, function(stop, index) {
-            var elem = $("#stops ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
+            $("#stops ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
         });
         
         $('#stops .stop').click(function() {
@@ -30,6 +30,39 @@ $(function() {
     function showHome() {
         $(".page").hide()
         $("#home").show();
+
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
+
+    function showFavorites() {
+        var favorites = getFavorites();
+
+        var i = 1;
+
+        $("#favorites .stop").remove();
+
+        _.each(favorites, function(favorite) {
+            var stop = _.detect(TRANSIT_STOPS, function(stop) {
+                return stop["slug"] == favorite;
+            });
+
+            $("#favorites ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
+
+            if (i % 2 == 0) {
+                $("#favorites #" + stop["slug"]).addClass("even");
+            }
+
+            i += 1;
+        });
+
+
+        $('#favorites .stop').click(function() {
+            window.location.hash = "stop/" + $(this).attr("id");
+        });
+
+        $(".page").hide()
+        $("#favorites").show();
 
         $(window).scrollTop(0)
         currentStop = null;
@@ -172,6 +205,7 @@ $(function() {
     window.StopController = Backbone.Controller.extend({
         routes: {
             "": "home",
+            "favorites": "favorites",
             "find": "lines",
             "line/:line": "line",
             "stop/:stop": "stop",
@@ -179,6 +213,10 @@ $(function() {
 
         home: function() {
             showHome();
+        },
+
+        favorites: function() {
+            showFavorites();
         },
 
         lines: function() {
@@ -203,12 +241,16 @@ $(function() {
     $("#find-a-stop").click(function() {
         window.location.hash = "find";
     });
+    
+    $("#view-favorites").click(function() {
+        window.location.hash = "favorites";
+    });
 
     $('#lines .line').click(function() {
         window.location.hash = "line/" + $(this).attr("id");
     });
 
-    $("#lines .close").click(function() {
+    $("#lines .close, #favorites .close").click(function() {
         window.location.hash = "";
     });
 

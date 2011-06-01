@@ -17,8 +17,10 @@ li.even { background-color: #eee; }
 
 #lines .line { font-size: 18px; cursor: pointer; }
 
-#stops .stop { font-size: 18px; cursor: pointer; }
-#stops .stop .transfer { font-size: 13px; color: #999; }
+#stops .stop,
+#favorites .stop { font-size: 18px; cursor: pointer; }
+#stops .stop .transfer,
+#favorites .stop .transfer{ font-size: 13px; color: #999; }
 
 #detail .contents { padding-bottom: 20px; }
 #detail .line { font-size: 20px; color: #999; }
