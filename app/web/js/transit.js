@@ -250,16 +250,8 @@ $(function() {
         window.location.hash = "line/" + $(this).attr("id");
     });
 
-    $("#lines .close, #favorites .close").click(function() {
-        window.location.hash = "";
-    });
-
-    $('#stops .close').click(function() {
-        window.location.hash = "find";
-    });
-
-    $('#detail .close').click(function() {
-        window.location.hash = "line/" + currentStop["line-slug"];
+    $(".close").click(function() {
+        history.back(); 
     });
 
     addStops(TRANSIT_STOPS);
