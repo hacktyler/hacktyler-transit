@@ -12,6 +12,17 @@ $(function() {
         platform = 'blackberry';
     }
 
+    window.BUS_LINES = {
+        "red-line-north": "Red Line North",
+        "red-line-south": "Red Line South",
+        "blue-line-northwest":" Blue Line Northwest",
+        "blue-line-southwest": "Blue Line Southwest",
+        "green-line-northeast": "Green Line Northeast",
+        "green-line-southeast": "Green Line Southeast",
+        "yellow-line-southwest": "Yellow Line Southwest",
+        "yellow-line-southeast": "Yellow Line Southeast"
+    };
+
     window.STOP_LIST_ITEM_TEMPLATE = _.template($('#stop-list-item-template').html());
     window.STOP_DETAIL_TEMPLATE = _.template($('#stop-detail-template').html());
 
@@ -56,7 +67,6 @@ $(function() {
             i += 1;
         });
 
-
         $('#favorites .stop').click(function() {
             window.location.hash = "stop/" + $(this).attr("id");
         });
@@ -93,6 +103,8 @@ $(function() {
                 i += 1;
             }
         });
+
+        $("#stops .line-name").text(BUS_LINES[line_slug]);
 
         $(".page").hide()
         $("#stops").show();
