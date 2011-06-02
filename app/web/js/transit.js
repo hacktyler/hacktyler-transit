@@ -24,6 +24,7 @@ $(function() {
     };
 
     window.STOP_LIST_ITEM_TEMPLATE = _.template($('#stop-list-item-template').html());
+    window.FAVORITE_LIST_ITEM_TEMPLATE = _.template($('#favorite-list-item-template').html());
     window.STOP_DETAIL_TEMPLATE = _.template($('#stop-detail-template').html());
 
     window.currentStop = null;
@@ -58,7 +59,7 @@ $(function() {
                 return stop["slug"] == favorite;
             });
 
-            $("#favorites ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
+            $("#favorites ul").append(FAVORITE_LIST_ITEM_TEMPLATE(stop));
 
             if (i % 2 == 0) {
                 $("#favorites #" + stop["slug"]).addClass("even");

@@ -75,6 +75,10 @@
         <li id="<%= slug %>" class="stop"><%= stop_street %><% if (next_cross_street != "") { %> & <%= next_cross_street %><% } %><% if (transfer_to != "") { %><br /><span class="transfer">Transfer to <%= transfer_to %></span><% } %></li>
     </script> 
 
+    <script type="text/template" id="favorite-list-item-template"> 
+        <li id="<%= slug %>" class="stop"><%= stop_street %><% if (next_cross_street != "") { %> & <%= next_cross_street %><% } %><br /><span class="line-name"><%= line %></span></li>
+    </script> 
+
     <script type="text/template" id="stop-detail-template"> 
         <h2><%= stop_street %><% if (next_cross_street != "") { %> & <%= next_cross_street %><% } %> <span class="line"><%= line %></span></h2>
         <div class="map">Map goes here.</div>
