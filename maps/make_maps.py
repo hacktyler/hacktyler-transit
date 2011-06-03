@@ -42,8 +42,8 @@ class GoogleProjection:
          h = RAD_TO_DEG * ( 2 * atan(exp(g)) - 0.5 * pi)
          return (f,h)
 
-def render_tile(filename, latitude, longitude, zoom):
-    mmap = mapnik2.Map(256, 256)
+def render_centered(filename, latitude, longitude, zoom, width=256, height=256):
+    mmap = mapnik2.Map(width, height)
     mapnik2.load_map(mmap, 'transit.xml', True)
     map_proj = mapnik2.Projection(mmap.srs)
 
@@ -51,33 +51,34 @@ def render_tile(filename, latitude, longitude, zoom):
     x, y = tile_proj.fromLLtoPixel([latitude, longitude], zoom) 
 
     # Calculate pixel positions of bottom-left & top-right
-    p0 = (x, y + 256)
-    p1 = (x + 256, y)
+    half_width = width / 2
+    half_height = height / 2
+    p0 = (x - half_width, y + half_height)
+    p1 = (x + half_width, y - half_height)
 
-    # Convert to LatLong (EPSG:4326)
+    # Convert tile coords to LatLng
     l0 = tile_proj.fromPixelToLL(p0, zoom);
     l1 = tile_proj.fromPixelToLL(p1, zoom);
 
-    # Convert to map projection (e.g. mercator co-ords EPSG:900913)
+    # Convert LatLng to map coords
     c0 = map_proj.forward(mapnik2.Coord(l0[0], l0[1]))
     c1 = map_proj.forward(mapnik2.Coord(l1[0], l1[1]))
 
-    # Bounding box for the tile
+    # Create bounding box for the render
     bbox = mapnik2.Box2d(c0.x, c0.y, c1.x, c1.y)
 
-    render_size = 256
-    mmap.resize(render_size, render_size)
     mmap.zoom_to_box(bbox)
-    mmap.buffer_size = 128
+    mmap.buffer_size = max([half_width, half_height]) 
 
     # Render image with default Agg renderer
-    image = mapnik2.Image(render_size, render_size)
+    image = mapnik2.Image(width, height)
     mapnik2.render(mmap, image)
     image.save(filename, 'png256')
 
 if __name__ == "__main__":
     # Tyler lower-left: -95.393,32.2307
     # Tyler upper-right: -95.1928,32.4419
+    # Tyler center: -95.301, 32.351
 
-    render_tile('test.png', -95.393, 32.4419, 11)
+    render_centered('test.png', -95.301, 32.351, 14, 1024, 1024)
 
