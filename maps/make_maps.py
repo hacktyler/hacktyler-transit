@@ -73,7 +73,7 @@ def render_tile(filename, latitude, longitude, zoom):
     # Render image with default Agg renderer
     image = mapnik2.Image(render_size, render_size)
     mapnik2.render(mmap, image)
-    image.save(filename, 'png256'
+    image.save(filename, 'png256')
 
 if __name__ == "__main__":
     render_tile('test.png', -95.393, 32.2307, 12)
