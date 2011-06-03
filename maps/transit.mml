@@ -1,0 +1,159 @@
+{
+  "_center": {
+    "lat": 32.34775865240061,
+    "lon": -95.31582176685214,
+    "zoom": 13
+  },
+  "_format": "png",
+  "_interactivity": false,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "parks",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "parks",
+      "name": "parks",
+      "class": "",
+      "geometry": "unknown"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "buildings",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "buildings",
+      "name": "buildings",
+      "class": "",
+      "geometry": "polygon"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "planet_osm_line",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "roads-underlay",
+      "name": "roads-underlay",
+      "class": "",
+      "geometry": "linestring"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "planet_osm_line",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "roads",
+      "name": "roads",
+      "class": "",
+      "geometry": "linestring"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "railroads",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "railroads",
+      "name": "railroads",
+      "class": "",
+      "geometry": "linestring"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "planet_osm_line",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "road-labels",
+      "name": "road-labels",
+      "class": "",
+      "geometry": "linestring"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "bus_routes",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "bus-routes",
+      "name": "bus-routes",
+      "class": "",
+      "geometry": "linestring"
+    },
+    {
+      "Datasource": {
+        "host": "",
+        "port": "",
+        "user": "",
+        "password": "",
+        "dbname": "transit",
+        "table": "bus_stops",
+        "geometry_field": "",
+        "extent": "",
+        "type": "postgis"
+      },
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "id": "bus-stops",
+      "name": "bus-stops",
+      "class": "",
+      "geometry": "point"
+    }
+  ]
+}

@@ -1,3 +1,11 @@
 *.pyc
 *.swp
 gzip
+maps/*.dbf
+maps/*.prj
+maps/*.sbn
+maps/*.sbx
+maps/*.shp
+maps/*.shp.xml
+maps/*.shx
+maps/*.zip
