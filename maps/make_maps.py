@@ -76,5 +76,8 @@ def render_tile(filename, latitude, longitude, zoom):
     image.save(filename, 'png256')
 
 if __name__ == "__main__":
-    render_tile('test.png', -95.393, 32.2307, 12)
+    # Tyler lower-left: -95.393,32.2307
+    # Tyler upper-right: -95.1928,32.4419
+
+    render_tile('test.png', -95.393, 32.4419, 11)
 
