@@ -5,9 +5,10 @@ from datetime import date, datetime, time
 
 DUMMY_TIME = date(2100, 12, 31)
 
-LINE = 0
-WEEKDAY_SCHEDULE = 12
-HAS_OFFICIAL_TIMES = 14
+LINE = 1
+DIRECTION = 2
+WEEKDAY_SCHEDULE = 11
+HAS_OFFICIAL_TIMES = 13
 
 lines = {}
 
@@ -20,7 +21,7 @@ def get_lines():
         header = reader.next()
 
         for row in reader:
-            line = row[LINE]
+            line = row[LINE] + " Line " + row[DIRECTION]
 
             if line in lines:
                 lines[line].append(row)

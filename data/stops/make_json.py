@@ -16,9 +16,6 @@ with open('bus-stops-schedule.csv', 'r') as f:
 
         # Fix up types for client
         row['order'] = int(row['order'])
-        row['shelter'] = (row['shelter'] == 'TRUE')
-        row['sign'] = (row['sign'] == 'TRUE')
-        row['flag'] = (row['flag'] == 'TRUE')
 
         row['latitude'] = float(row['latitude']) if row['latitude'] else None
         row['longitude'] = float(row['longitude'])  if row['longitude'] else None
@@ -33,24 +30,9 @@ with open('bus-stops-schedule.csv', 'r') as f:
                 return '%i:%02i AM' % (h, m)
 
         row['weekday_schedule'] = map(format_time, row['weekday_schedule'].split(','))
-        print row['weekday_schedule']
         
         # Append a few useful attributes
-        row['line-slug'] = row['line'].replace(' ', '-').lower()
-        
-        slug = (row['stop_street'] + '_' + row['next_cross_street']).replace(' ', '_').lower()
-
-        # Prevent slug name collisions
-        if slug in slugs:
-            n = 2
-
-            while '%s_%i' % (slug, n) in slugs:
-                n += 1
-
-            slug = '%s_%i' % (slug, n)
-
-        slugs.append(slug)
-        row['slug'] = slug
+        row['line-slug'] = row['line'].lower() + '-line-' + row['direction']
 
         stops.append(row)
 

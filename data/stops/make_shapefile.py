@@ -6,24 +6,27 @@ import shutil
 
 from osgeo import ogr
 
-shutil.rmtree('bus-stops')
-os.mkdir('bus-stops')
+try:
+    shutil.rmtree('bus_stops_data')
+except OSError:
+    pass
+
+os.mkdir('bus_stops_data')
 
 shp_driver = ogr.GetDriverByName('ESRI Shapefile')
-output = shp_driver.CreateDataSource("bus-stops/bus-stops.shp")
+output = shp_driver.CreateDataSource("bus_stops_data/bus_stops_data.shp")
 
-stops = output.CreateLayer("bus-stops", geom_type=ogr.wkbPoint)
+stops = output.CreateLayer("bus_stops_data", geom_type=ogr.wkbPoint)
 
 fields = {
-    'LINE': ogr.OFTString,
     'ORDER': ogr.OFTString,
-    'STOP_ST': ogr.OFTString,
-    'CROSS_ST': ogr.OFTString,
+    'LINE': ogr.OFTString,
+    'DIRECTION': ogr.OFTString,
+    'NAME': ogr.OFTString,
+    'BLOCK': ogr.OFTString,
+    'STREET': ogr.OFTString,
     'LANDMARK': ogr.OFTString,
-    'SHELTER': ogr.OFTString,
-    'SIGN': ogr.OFTString,
-    'FLAG': ogr.OFTString,
-    'GEOCODE': ogr.OFTString,
+    'MARKER': ogr.OFTString,
     'LATITUDE': ogr.OFTReal,
     'LONGITUDE': ogr.OFTReal,
     'TRANSFER': ogr.OFTString,
@@ -49,15 +52,14 @@ with open('bus-stops-schedule.csv', 'r') as f:
 
         feature = ogr.Feature(feature_def=stops.GetLayerDefn())
 
-        feature.SetField('LINE', row['line'])
         feature.SetField('ORDER', row['order'])
-        feature.SetField('STOP_ST', row['stop_street'])
-        feature.SetField('CROSS_ST', row['next_cross_street'])
+        feature.SetField('LINE', row['line'])
+        feature.SetField('DIRECTION', row['direction'])
+        feature.SetField('NAME', row['name'])
+        feature.SetField('BLOCK', row['block'])
+        feature.SetField('STREET', row['street'])
         feature.SetField('LANDMARK', row['landmark'])
-        feature.SetField('SHELTER', row['shelter'])
-        feature.SetField('SIGN', row['sign'])
-        feature.SetField('FLAG', row['flag'])
-        feature.SetField('GEOCODE', row['geocoded_address'])
+        feature.SetField('MARKER', row['marker'])
         feature.SetField('LATITUDE', row['latitude'])
         feature.SetField('LONGITUDE', row['longitude'])
         feature.SetField('TRANSFER', row['transfer_to'])
