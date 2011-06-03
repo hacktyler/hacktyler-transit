@@ -32,7 +32,7 @@ with open('bus-stops-schedule.csv', 'r') as f:
         row['weekday_schedule'] = map(format_time, row['weekday_schedule'].split(','))
         
         # Append a few useful attributes
-        row['line-slug'] = row['line'].lower() + '-line-' + row['direction']
+        row['line-slug'] = row['line'].lower() + '-line-' + row['direction'].lower()
 
         stops.append(row)
 

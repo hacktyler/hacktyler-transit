@@ -56,13 +56,13 @@ $(function() {
 
         _.each(favorites, function(favorite) {
             var stop = _.detect(TRANSIT_STOPS, function(stop) {
-                return stop["slug"] == favorite;
+                return stop["order"] == favorite;
             });
 
             $("#favorites ul").append(FAVORITE_LIST_ITEM_TEMPLATE(stop));
 
             if (i % 2 == 0) {
-                $("#favorites #" + stop["slug"]).addClass("even");
+                $("#favorites #" + stop["order"]).addClass("even");
             }
 
             i += 1;
@@ -95,10 +95,10 @@ $(function() {
         // Show stops for the selected line
         _.each(TRANSIT_STOPS, function(stop) {
             if (stop["line-slug"] == line_slug) {
-                $("#stops #" + stop["slug"]).show();
+                $("#stops #" + stop["order"]).show();
 
                 if (i % 2 == 0) {
-                    $("#stops #" + stop["slug"]).addClass("even");
+                    $("#stops #" + stop["order"]).addClass("even");
                 }
 
                 i += 1;
@@ -155,17 +155,17 @@ $(function() {
             stop["next_departure_in"] = Math.floor((delta / 1000) / 60);
         }
 
-        stop["is_favorite"] = isFavorite(stop["slug"]);
+        stop["is_favorite"] = isFavorite(stop["order"]);
 
         $(".page").hide()
         $("#detail .contents").html(STOP_DETAIL_TEMPLATE(stop));
 
         $('#detail .favorite').click(function() {
-            if (isFavorite(stop["slug"]) === true) {
-                removeStopFromFavorites(stop["slug"]);
+            if (isFavorite(stop["order"]) === true) {
+                removeStopFromFavorites(stop["order"]);
                 $(this).text("Add to favorites");
             } else {
-                addStopToFavorites(stop["slug"]);
+                addStopToFavorites(stop["order"]);
                 $(this).text("Remove from favorites");
             }
         });
@@ -176,9 +176,9 @@ $(function() {
         currentStop = stop;
     }
     
-    function viewStopBySlug(slug) {
+    function viewStopById(order) {
         var stop = _.detect(TRANSIT_STOPS, function(stop) {
-                return stop["slug"] == slug;
+                return stop["order"] == order;
             });
 
         if (stop != null) {
@@ -196,23 +196,23 @@ $(function() {
         return favs;
     }
 
-    function isFavorite(slug) {
-        return (_.indexOf(getFavorites(), slug) > -1);
+    function isFavorite(order) {
+        return (_.indexOf(getFavorites(), order) > -1);
     }
 
     function setFavorites(favs) {
         store.set("favorite_stops", favs);
     }
 
-    function addStopToFavorites(slug) {
+    function addStopToFavorites(order) {
         favs = getFavorites();
-        favs.push(slug);
+        favs.push(order);
         setFavorites(favs);
     }
 
-    function removeStopFromFavorites(slug) {
+    function removeStopFromFavorites(order) {
         favs = getFavorites();
-        setFavorites(_.without(favs, slug));
+        setFavorites(_.without(favs, order));
     }
 
     window.StopController = Backbone.Controller.extend({
@@ -241,7 +241,7 @@ $(function() {
         },
 
         stop: function(stop) {
-            viewStopBySlug(stop);
+            viewStopById(stop);
         },
     });
 
