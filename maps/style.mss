@@ -8,9 +8,12 @@
 /*-----------------------------------
   Fonts
 ------------------------------------- */
-@sans: "Gill Sans MT Regular","Trebuchet MS Regular","DejaVu Sans Condensed";
+/*@sans: "Gill Sans MT Regular","Trebuchet MS Regular","DejaVu Sans Condensed";
 @sansitalic: "Gill Sans MT Italic","Trebuchet MS Italic","DejaVu Sans Condensed Italic";
-@sansbold: "Gill Sans MT Bold","DejaVu Sans Bold";
+@sansbold: "Gill Sans MT Bold","DejaVu Sans Bold";*/
+@sans: "Arial Regular";
+@sansitalic: "Arial Italic";
+@sansbold: "Arial Bold";
 
 Map {
   background-color: #fff;
