@@ -29,6 +29,7 @@ fields = {
     'MARKER': ogr.OFTString,
     'LATITUDE': ogr.OFTReal,
     'LONGITUDE': ogr.OFTReal,
+    'ESTIMATED': ogr.OFTString,
     'TRANSFER': ogr.OFTString,
     'WEEKDAY': ogr.OFTString,
     'SATURDAY': ogr.OFTString,
@@ -62,6 +63,7 @@ with open('bus-stops-schedule.csv', 'r') as f:
         feature.SetField('MARKER', row['marker'])
         feature.SetField('LATITUDE', row['latitude'])
         feature.SetField('LONGITUDE', row['longitude'])
+        feature.SetField('ESTIMATED', row['estimated_location'])
         feature.SetField('TRANSFER', row['transfer_to'])
         feature.SetField('WEEKDAY', row['weekday_schedule'])
         feature.SetField('SATURDAY', row['saturday_schedule'])

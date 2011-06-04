@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Map[]>
-<Map background-color="#ffffff" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs">
+<Map background-color="#ffffff" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
 
 
 <Style name="parks" filter-mode="first">
@@ -14,22 +14,21 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>parks</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">parks</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[parks]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="buildings" filter-mode="first">
   <Rule>
-    <PolygonSymbolizer fill="#f8f8f8" />
-    <LineSymbolizer stroke-width="0.5" stroke="#f0f0f0" />
+    <BuildingSymbolizer fill="#f8f8f8" height="3" />
   </Rule>
 </Style>
 <Layer
@@ -37,21 +36,105 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>buildings</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">buildings</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[buildings]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="roads-underlay" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'primary_link')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([highway] = 'secondary_link')</Filter>
     <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
   </Rule>
@@ -104,34 +187,6 @@
   <Rule>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([highway] = 'secondary')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'primary_link')</Filter>
-    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'primary_link')</Filter>
-    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'primary_link')</Filter>
-    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'primary_link')</Filter>
-    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'primary_link')</Filter>
     <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
   </Rule>
   <Rule>
@@ -216,150 +271,28 @@
   <Rule>
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'tertiary')</Filter>
-    <LineSymbolizer stroke-width="11" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary')</Filter>
-    <LineSymbolizer stroke-width="7" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary')</Filter>
-    <LineSymbolizer stroke-width="4" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary')</Filter>
-    <LineSymbolizer stroke-width="1" stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary')</Filter>
     <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="0.25" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'trunk_link')</Filter>
+    <Filter>([highway] = 'trunk')</Filter>
     <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([highway] = 'trunk_link')</Filter>
+    <Filter>([highway] = 'trunk')</Filter>
     <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'trunk_link')</Filter>
+    <Filter>([highway] = 'trunk')</Filter>
     <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
   </Rule>
   <Rule>
     <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([highway] = 'trunk_link')</Filter>
-    <LineSymbolizer stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'construction')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([highway] = 'construction')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'construction')</Filter>
-    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([highway] = 'construction')</Filter>
-    <LineSymbolizer stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'service')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([highway] = 'service')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'service')</Filter>
-    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([highway] = 'service')</Filter>
-    <LineSymbolizer stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'unclassified')</Filter>
-    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([highway] = 'unclassified')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>750000</MaxScaleDenominator>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'unclassified')</Filter>
-    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([highway] = 'unclassified')</Filter>
+    <Filter>([highway] = 'trunk')</Filter>
     <LineSymbolizer stroke="#cacaca" />
   </Rule>
   <Rule>
@@ -386,24 +319,90 @@
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'trunk')</Filter>
+    <Filter>([highway] = 'unclassified')</Filter>
     <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([highway] = 'trunk')</Filter>
+    <Filter>([highway] = 'unclassified')</Filter>
     <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>750000</MaxScaleDenominator>
     <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'trunk')</Filter>
+    <Filter>([highway] = 'unclassified')</Filter>
     <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
   </Rule>
   <Rule>
     <MinScaleDenominator>750000</MinScaleDenominator>
-    <Filter>([highway] = 'trunk')</Filter>
+    <Filter>([highway] = 'unclassified')</Filter>
+    <LineSymbolizer stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([highway] = 'service')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([highway] = 'service')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'service')</Filter>
+    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([highway] = 'service')</Filter>
+    <LineSymbolizer stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([highway] = 'construction')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([highway] = 'construction')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'construction')</Filter>
+    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([highway] = 'construction')</Filter>
+    <LineSymbolizer stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([highway] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-linejoin="round" stroke-linecap="round" stroke="#cacaca" stroke-width="10" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([highway] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>750000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'trunk_link')</Filter>
+    <LineSymbolizer stroke-width="0.2" stroke="#cacaca" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>750000</MinScaleDenominator>
+    <Filter>([highway] = 'trunk_link')</Filter>
     <LineSymbolizer stroke="#cacaca" />
   </Rule>
   <Rule>
@@ -425,15 +424,15 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>roads-underlay</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">planet_osm_line</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[planet_osm_line]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -462,6 +461,90 @@
   </Rule>
   <Rule>
     <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway_link')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([highway] = 'tertiary_link')</Filter>
+    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
     <Filter>([highway] = 'tertiary')</Filter>
     <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
@@ -599,95 +682,6 @@
     <MinScaleDenominator>100000</MinScaleDenominator>
     <Filter>([highway] = 'primary')</Filter>
     <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'motorway_link')</Filter>
-    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway_link')</Filter>
-    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway_link')</Filter>
-    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway_link')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway_link')</Filter>
-    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="9" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="3" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke-width="0.5" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>100000</MinScaleDenominator>
-    <Filter>([highway] = 'tertiary_link')</Filter>
-    <LineSymbolizer stroke="#ffffff" stroke-width="0.25" stroke-linejoin="round" stroke-linecap="round" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([highway] = 'trunk')</Filter>
-    <LineSymbolizer stroke-width="8" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
@@ -715,11 +709,16 @@
     <LineSymbolizer stroke-width="8" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
-    <Filter>([highway] = 'footway')</Filter>
-    <LineSymbolizer stroke="#666666" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="2, 2" />
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([highway] = 'trunk')</Filter>
+    <LineSymbolizer stroke-width="8" stroke="#ffffff" stroke-linejoin="round" stroke-linecap="round" />
   </Rule>
   <Rule>
     <Filter>([highway] = 'cycleway')</Filter>
+    <LineSymbolizer stroke="#666666" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="2, 2" />
+  </Rule>
+  <Rule>
+    <Filter>([highway] = 'footway')</Filter>
     <LineSymbolizer stroke="#666666" stroke-opacity="0.15" stroke-width="1" stroke-dasharray="2, 2" />
   </Rule>
 </Style>
@@ -728,15 +727,15 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>roads</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">planet_osm_line</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[planet_osm_line]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -760,94 +759,37 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>railroads</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">railroads</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
-    </Datasource>
-  </Layer>
-
-<Style name="road-labels" filter-mode="first">
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <TextSymbolizer name="[name]" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'motorway')</Filter>
-    <TextSymbolizer name="''" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <Filter>([highway] = 'primary')</Filter>
-    <TextSymbolizer name="[name]" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'primary')</Filter>
-    <TextSymbolizer name="''" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>50000</MaxScaleDenominator>
-    <Filter>([highway] = 'secondary')</Filter>
-    <TextSymbolizer name="[name]" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([highway] = 'secondary')</Filter>
-    <TextSymbolizer name="''" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>25000</MaxScaleDenominator>
-    <TextSymbolizer name="[name]" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-  <Rule>
-    <MinScaleDenominator>25000</MinScaleDenominator>
-    <TextSymbolizer name="''" face-name="Arial Regular" fill="#666666" placement="line" avoid-edges="true" size="9" />
-  </Rule>
-</Style>
-<Layer
-      name="road-labels"
-   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
-    <StyleName>road-labels</StyleName>
-    <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">planet_osm_line</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[railroads]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="bus-routes" filter-mode="first">
   <Rule>
     <Filter>([line] = 'YELLOW')</Filter>
-    <LineSymbolizer stroke="#ffff00" stroke-width="1" />
+    <LineSymbolizer stroke="#ffff00" stroke-width="2" />
   </Rule>
   <Rule>
     <Filter>([line] = 'GREEN')</Filter>
-    <LineSymbolizer stroke="#008000" stroke-width="1" />
+    <LineSymbolizer stroke="#008000" stroke-width="2" />
   </Rule>
   <Rule>
     <Filter>([line] = 'BLUE')</Filter>
-    <LineSymbolizer stroke="#0000ff" stroke-width="1" />
+    <LineSymbolizer stroke="#0000ff" stroke-width="2" />
   </Rule>
   <Rule>
     <Filter>([line] = 'RED')</Filter>
-    <LineSymbolizer stroke="#ff0000" stroke-width="1" />
+    <LineSymbolizer stroke="#ff0000" stroke-width="2" />
   </Rule>
   <Rule>
-    <LineSymbolizer stroke-width="1" />
+    <LineSymbolizer stroke-width="2" />
   </Rule>
 </Style>
 <Layer
@@ -855,37 +797,89 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>bus-routes</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">bus_routes</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[bus_routes]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 
 <Style name="bus-stops" filter-mode="first">
   <Rule>
+    <Filter>([order] = 'END') and ([line] = 'Yellow')</Filter>
+    <MarkersSymbolizer opacity="0" fill="#ffff00" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = 'END') and ([line] = 'Green')</Filter>
+    <MarkersSymbolizer opacity="0" fill="#008000" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = 'END') and ([line] = 'Blue')</Filter>
+    <MarkersSymbolizer opacity="0" fill="#0000ff" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = 'END') and ([line] = 'Red')</Filter>
+    <MarkersSymbolizer opacity="0" fill="#ff0000" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = 'END')</Filter>
+    <MarkersSymbolizer opacity="0" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '700')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '600')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '500')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '800')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '400')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '300')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '200')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
+    <Filter>([order] = '100')</Filter>
+    <MarkersSymbolizer fill="#800080" stroke="#000000" allow-overlap="true" />
+  </Rule>
+  <Rule>
     <Filter>([line] = 'Yellow')</Filter>
-    <MarkersSymbolizer fill="#ffff00" stroke="#000000" />
+    <MarkersSymbolizer fill="#ffff00" stroke="#000000" allow-overlap="true" />
   </Rule>
   <Rule>
     <Filter>([line] = 'Green')</Filter>
-    <MarkersSymbolizer fill="#008000" stroke="#000000" />
+    <MarkersSymbolizer fill="#008000" stroke="#000000" allow-overlap="true" />
   </Rule>
   <Rule>
     <Filter>([line] = 'Blue')</Filter>
-    <MarkersSymbolizer fill="#0000ff" stroke="#000000" />
+    <MarkersSymbolizer fill="#0000ff" stroke="#000000" allow-overlap="true" />
   </Rule>
   <Rule>
     <Filter>([line] = 'Red')</Filter>
-    <MarkersSymbolizer fill="#ff0000" stroke="#000000" />
+    <MarkersSymbolizer fill="#ff0000" stroke="#000000" allow-overlap="true" />
   </Rule>
   <Rule>
-    <MarkersSymbolizer stroke="#000000" />
+    <MarkersSymbolizer stroke="#000000" allow-overlap="true" />
   </Rule>
 </Style>
 <Layer
@@ -893,15 +887,72 @@
    srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>bus-stops</StyleName>
     <Datasource>
-       <Parameter name="host"></Parameter>
-       <Parameter name="port"></Parameter>
-       <Parameter name="user"></Parameter>
-       <Parameter name="password"></Parameter>
-       <Parameter name="dbname">transit</Parameter>
-       <Parameter name="table">bus_stops</Parameter>
-       <Parameter name="geometry_field"></Parameter>
-       <Parameter name="extent"></Parameter>
-       <Parameter name="type">postgis</Parameter>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[bus_stops]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+    </Datasource>
+  </Layer>
+
+<Style name="road-labels" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <TextSymbolizer name="[name]" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'motorway')</Filter>
+    <TextSymbolizer name="''" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([highway] = 'primary')</Filter>
+    <TextSymbolizer name="[name]" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'primary')</Filter>
+    <TextSymbolizer name="''" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([highway] = 'secondary')</Filter>
+    <TextSymbolizer name="[name]" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([highway] = 'secondary')</Filter>
+    <TextSymbolizer name="''" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <TextSymbolizer name="[name]" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <TextSymbolizer name="''" face-name="DejaVu Sans Bold" fill="#666666" placement="line" avoid-edges="true" size="9" halo-radius="1" />
+  </Rule>
+</Style>
+<Layer
+      name="road-labels"
+   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>road-labels</StyleName>
+    <Datasource>
+       <Parameter name="host"><![CDATA[]]></Parameter>
+       <Parameter name="port"><![CDATA[]]></Parameter>
+       <Parameter name="user"><![CDATA[]]></Parameter>
+       <Parameter name="password"><![CDATA[]]></Parameter>
+       <Parameter name="dbname"><![CDATA[transit]]></Parameter>
+       <Parameter name="table"><![CDATA[planet_osm_line]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[]]></Parameter>
+       <Parameter name="extent"><![CDATA[]]></Parameter>
+       <Parameter name="type"><![CDATA[postgis]]></Parameter>
     </Datasource>
   </Layer>
 

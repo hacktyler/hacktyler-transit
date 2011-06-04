@@ -22,12 +22,13 @@ li.even { background-color: #eee; }
 #stops .stop .transfer,
 #favorites .stop .line-name { font-size: 13px; color: #999; }
 
-#detail .contents { padding-bottom: 20px; }
+#detail .contents { padding-bottom: 10px; }
 #detail .line { font-size: 20px; color: #999; }
-#detail .date { font-size: 20px; color: #999; text-align: right; }
+#detail .date { font-size: 20px; color: #999; }
 #detail .departures li { padding: 5px 0 5px 5px; }
 #detail .departures .next { background-color: #feffaf; }
-#detail .asterisk { font-size: 12px; }
+#detail .asterisk { font-size: 12px; margin-top:-10px; }
+#detail .buttons { padding-top: 15px; }
 
 /* iPad Portrait/Browser */
 @media only screen and (min-width: 768px) and (max-width: 991px) {

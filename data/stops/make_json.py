@@ -16,6 +16,7 @@ with open('bus-stops-schedule.csv', 'r') as f:
 
         # Fix up types for client
         row['order'] = int(row['order'])
+        row['estimated_location'] = (row['estimated_location'] == 'TRUE')
 
         row['latitude'] = float(row['latitude']) if row['latitude'] else None
         row['longitude'] = float(row['longitude'])  if row['longitude'] else None

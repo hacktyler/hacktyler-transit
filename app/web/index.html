@@ -81,15 +81,21 @@
 
     <script type="text/template" id="stop-detail-template"> 
         <h2><%= name %> <span class="line"><%= line %> Line <%= direction %></span></h2>
-        <div class="map">Map goes here.</div>
-        <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
-        
-        <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
-        <% if (marker == "Shelter") { %><strong>There is a bus shelter at this stop.</strong><br />
-        <% } else if (marker == "Sign") { %><strong>There is a sign marking this stop.</strong><br />
-        <% } else { %><strong>Neither a bus shelter nor a sign marks this stop.</strong><% } %>
+        <div class="map"><img src="images/maps/<%= order %>.png" alt="Map of stop <%= order %>" /></div>
+        <p>
+            <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
+            
+            <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
+        </p>
 
-        <h3>Departures <span class="date">for <% print(_.date().format("dddd, MMMM Do")); %></span></h3>
+        <p>
+            <% if (estimated_location) { %>Due to lack of detailed information, this stop's location on the map is only an approximation.<br /><% } %>
+            <% if (marker == "Shelter") { %><strong>There is a bus shelter at this stop.</strong><br />
+            <% } else if (marker == "Sign") { %><strong>There is a sign marking this stop.</strong><br />
+            <% } else { %><strong>This stop may not have a shelter or a sign marking its location.</strong><% } %>
+        </p>
+
+        <h3 class="subhead">Departures <span class="date">for <% print(_.date().format("dddd, MMMM Do")); %></span></h3>
         <ul class="departures">
             <% _.each(weekday_schedule, function(time, index) { %>
                 <% if (time === next_departure) { %>
@@ -101,7 +107,9 @@
         </ul>
         <div class="asterisk">*All departure times are estimates based on short timetables published by <a href="http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx">Tyler Transit</a>.</div>
 
-        <a class="button favorite"><% if (is_favorite === true) { %>Remove from<% } else { %>Add to<% } %> favorites</a>
+        <div class="buttons">
+            <a class="button favorite"><% if (is_favorite === true) { %>Remove from<% } else { %>Add to<% } %> favorites</a>
+        </div>
     </script>
 
     <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script> 

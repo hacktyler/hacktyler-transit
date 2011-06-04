@@ -8,12 +8,9 @@
 /*-----------------------------------
   Fonts
 ------------------------------------- */
-/*@sans: "Gill Sans MT Regular","Trebuchet MS Regular","DejaVu Sans Condensed";
-@sansitalic: "Gill Sans MT Italic","Trebuchet MS Italic","DejaVu Sans Condensed Italic";
-@sansbold: "Gill Sans MT Bold","DejaVu Sans Bold";*/
-@sans: "Arial Regular";
-@sansitalic: "Arial Italic";
-@sansbold: "Arial Bold";
+@sans: "DejaVu Sans Condensed";
+@sansitalic: "DejaVu Sans Condensed Italic";
+@sansbold: "DejaVu Sans Bold";
 
 Map {
   background-color: #fff;
@@ -32,7 +29,21 @@ Map {
   [line='Yellow'] {
     marker-fill: yellow;
   }
+  [order='100'],
+  [order='200'],
+  [order='300'],
+  [order='400'],
+  [order='500'],
+  [order='600'],
+  [order='700'],
+  [order='800'],{
+    marker-fill: purple;
+  }
+  [order='END'] {
+    marker-opacity: 0.0;
+  }
   marker-line-color: black;
+  marker-allow-overlap: true;
 }
 
 #bus-routes {
@@ -48,7 +59,7 @@ Map {
   [line='YELLOW'] {
     line-color: yellow;
   }
-  line-width: 1.0;
+  line-width: 2.0;
 }
 
 #water {
@@ -64,11 +75,12 @@ Map {
 
 #road-labels {
   text-name:"''";
-  text-face-name: @sans;
+  text-face-name: @sansbold;
   text-fill: @grey;
   text-placement: line;
   text-avoid-edges: true;
   text-size: 9;
+  text-halo-radius: 1;
   [zoom>14] { text-name: "[name]"; }
   [highway='motorway'],
   [highway='primary'],
@@ -171,10 +183,8 @@ Map {
   }
 
 #buildings {
-  polygon-fill: #f8f8f8;
-  //polygon-fill: #000;
-  line-width: 0.5;
-  line-color: #f0f0f0;
+  building-fill: #f8f8f8;
+  building-height: 3;
   }
 
 #railroads {
