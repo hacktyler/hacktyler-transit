@@ -49,15 +49,23 @@ Map {
 #bus-routes {
   [line='RED'] {
     line-color: red;
+    marker-fill: red;
+    marker-line-color: red;
   }
   [line='BLUE'] {
     line-color: blue;
+    marker-fill: blue;
+    marker-line-color: blue;
   }
   [line='GREEN'] {
     line-color: green;
+    marker-fill: green;
+    marker-line-color: green;
   }
   [line='YELLOW'] {
     line-color: yellow;
+    marker-fill: yellow;
+    marker-line-color: yellow;
   }
   line-width: 2.0;
 }

@@ -2,8 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Hack Tyler Transit</title>
-    <meta name="description" content="Time-tables for buses in Tyler, Texas.">
+    <title>Tyler On Time</title>
+    <meta name="description" content="The unofficial guide to the Tyler, TX bus system.">
 	<meta name="author" content="Hack Tyler, Christopher Groskopf (@onyxfish)">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"> 
     <link rel="stylesheet" href="css/base.css">
@@ -18,14 +18,15 @@
     <div id="not-footer">
         <div id="container">
             <header>
-                <h1>Hack Tyler Transit</h1>
+                <h1>Tyler On Time</h1>
                 <hr />
             </header>
             
             <div id="content">
                 <section id="home" class="page">
                     <a id="find-a-stop" class="button">Find a stop</a><br />
-                    <a id="view-favorites" class="button">My favorites</a>
+                    <a id="view-favorites" class="button">My favorites</a><br />
+                    <a id="view-about" class="button">About</a>
                 </section>
 
                 <section id="favorites" class="page">
@@ -64,6 +65,12 @@
                     </div>
                     <a class="button close">&laquo; Back</a>
                 </section>
+
+                <section id="about" class="page">
+                    <a class="button close">&laquo; Back to home</a>
+                    <div>TODO!</div>
+                    <a class="button close">&laquo; Back to home</a>
+                </section>
             </div>
         </div>
     </div>
@@ -80,22 +87,24 @@
     </script> 
 
     <script type="text/template" id="stop-detail-template"> 
-        <h2><%= name %> <span class="line"><%= line %> Line <%= direction %></span></h2>
+        <div class="line"><%= line %> Line <%= direction %></div>
+        <h2><%= name %> </h2>
         <div class="map"><img src="images/maps/<%= order %>.png" alt="Map of stop <%= order %>" /></div>
         <p>
-            <% if (landmark != "") { %><strong>Landmarks:</strong> <%= landmark %><br /><% } %>
+            <% if (landmark != "") { %><strong>At this stop:</strong> <%= landmark %><br /><% } %>
             
-            <% if (transfer_to != "") { %>Transfer to <strong><%= transfer_to %></strong> at this stop.<br /><% } %>
+            <% if (transfer_to != "") { %><strong>Transfer to:</strong> <%= transfer_to %><br /><% } %>
         </p>
 
         <p>
             <% if (estimated_location) { %>Due to lack of detailed information, this stop's location on the map is only an approximation.<br /><% } %>
-            <% if (marker == "Shelter") { %><strong>There is a bus shelter at this stop.</strong><br />
-            <% } else if (marker == "Sign") { %><strong>There is a sign marking this stop.</strong><br />
+            <% if (marker == "Shelter") { %>There is a <strong>shelter</strong> at this stop.<br />
+            <% } else if (marker == "Sign") { %>There is a </strong>sign</strong> marking this stop.<br />
             <% } else { %><strong>This stop may not have a shelter or a sign marking its location.</strong><% } %>
         </p>
 
-        <h3 class="subhead">Departures <span class="date">for <% print(_.date().format("dddd, MMMM Do")); %></span></h3>
+        <div class="date"><% print(_.date().format("dddd, MMMM Do")); %></div>
+        <h3 class="subhead">Departures</h3>
         <ul class="departures">
             <% _.each(weekday_schedule, function(time, index) { %>
                 <% if (time === next_departure) { %>

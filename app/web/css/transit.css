@@ -15,6 +15,8 @@ header h1 { padding-top: 20px; cursor: pointer; }
 li { margin: 0; padding: 10px 0 10px 5px; }
 li.even { background-color: #eee; }
 
+#home .button { width: 274px; font-size: 20px; margin-bottom: 10px; text-align: center; padding: 8px 12px; }
+
 #lines .line { font-size: 18px; cursor: pointer; }
 
 #stops .stop,
@@ -23,8 +25,9 @@ li.even { background-color: #eee; }
 #favorites .stop .line-name { font-size: 13px; color: #999; }
 
 #detail .contents { padding-bottom: 10px; }
-#detail .line { font-size: 20px; color: #999; }
-#detail .date { font-size: 20px; color: #999; }
+#detail .line { font-size: 20px; color: #999; font-family: "Georgia", "Times New Roman", Helvetica, Arial, sans-serif; }
+#detail .date { font-size: 20px; color: #999; font-family: "Georgia", "Times New Roman", Helvetica, Arial, sans-serif; }
+#detail .subhead { line-height: 40px; }
 #detail .departures li { padding: 5px 0 5px 5px; }
 #detail .departures .next { background-color: #feffaf; }
 #detail .asterisk { font-size: 12px; margin-top:-10px; }

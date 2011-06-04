@@ -79,6 +79,14 @@ $(function() {
         currentStop = null;
     }
 
+    function showAbout() { 
+        $(".page").hide()
+        $("#about").show();
+
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
+
     function showLines() { 
         $(".page").hide()
         $("#lines").show();
@@ -219,6 +227,7 @@ $(function() {
         routes: {
             "": "home",
             "favorites": "favorites",
+            "about": "about",
             "find": "lines",
             "line/:line": "line",
             "stop/:stop": "stop",
@@ -230,6 +239,10 @@ $(function() {
 
         favorites: function() {
             showFavorites();
+        },
+
+        about: function() {
+            showAbout();
         },
 
         lines: function() {
@@ -257,6 +270,10 @@ $(function() {
     
     $("#view-favorites").click(function() {
         window.location.hash = "favorites";
+    });
+
+    $("#view-about").click(function() {
+        window.location.hash = "about";
     });
 
     $('#lines .line').click(function() {
