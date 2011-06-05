@@ -82,11 +82,11 @@
     </footer>
 
     <script type="text/template" id="stop-list-item-template"> 
-        <li id="<%= order %>" class="stop"><%= name %><% if (transfer_to != "") { %><br /><span class="transfer">Transfer to <%= transfer_to %></span><% } %></li>
+        <li id="stop-<%= order %>" class="stop"><%= name %><% if (transfer_to != "") { %><br /><span class="transfer">Transfer to <%= transfer_to %></span><% } %></li>
     </script> 
 
     <script type="text/template" id="favorite-list-item-template"> 
-        <li id="<%= order %>" class="stop"><%= name %><br /><span class="line-name"><%= line %> Line <%= direction %></span></li>
+        <li id="favorite-<%= order %>" class="stop"><%= name %><br /><span class="line-name"><%= line %> Line <%= direction %></span></li>
     </script> 
 
     <script type="text/template" id="stop-detail-template"> 

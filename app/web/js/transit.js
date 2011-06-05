@@ -35,7 +35,7 @@ $(function() {
         });
         
         $('#stops .stop').click(function() {
-            window.location.hash = "stop/" + $(this).attr("id");
+            window.location.hash = "stop/" + $(this).attr("id").substr("stop-".length, 3);
         });
     }
 
@@ -62,14 +62,14 @@ $(function() {
             $("#favorites ul").append(FAVORITE_LIST_ITEM_TEMPLATE(stop));
 
             if (i % 2 == 0) {
-                $("#favorites #" + stop["order"]).addClass("even");
+                $("#favorites #favorite-" + stop["order"]).addClass("even");
             }
 
             i += 1;
         });
 
         $('#favorites .stop').click(function() {
-            window.location.hash = "stop/" + $(this).attr("id");
+            window.location.hash = "stop/" + $(this).attr("id").substr("favorite-".length, 3);
         });
 
         $(".page").hide()
@@ -103,10 +103,10 @@ $(function() {
         // Show stops for the selected line
         _.each(TRANSIT_STOPS, function(stop) {
             if (stop["line-slug"] == line_slug) {
-                $("#stops #" + stop["order"]).show();
+                $("#stops #stop-" + stop["order"]).show();
 
                 if (i % 2 == 0) {
-                    $("#stops #" + stop["order"]).addClass("even");
+                    $("#stops #stop-" + stop["order"]).addClass("even");
                 }
 
                 i += 1;
