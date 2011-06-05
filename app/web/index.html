@@ -108,16 +108,19 @@
 
         <div class="date"><% print(_.date().format("dddd, MMMM Do")); %></div>
         <h3 class="subhead">Departures</h3>
-        <ul class="departures">
-            <% _.each(weekday_schedule, function(time, index) { %>
-                <% if (time === next_departure) { %>
-                    <li class="next"><%= time %> <span class="delta">(<%= next_departure_in %> minutes)</span></li>
-                <% } else { %>
-                    <li class="<% if (index % 2 == 0) { print('even'); }; %>"><%= time %> </li>
-                <% } %>
-            <% }); %>
-        </ul>
-        <div class="asterisk">*All departure times are estimates based on short timetables published by <a href="http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx">Tyler Transit</a>.</div>
+        <% if (!_.isNull(schedule_message)) { %><%= schedule_message %><% } %>
+        <% if (!_.isNull(schedule)) { %>
+            <ul class="departures">
+                <% _.each(schedule, function(time, index) { %>
+                    <% if (time === next_departure) { %>
+                        <li class="next"><%= time %> <span class="delta">(<%= next_departure_in %> minutes)</span></li>
+                    <% } else { %>
+                        <li class="<% if (index % 2 == 0) { print('even'); }; %>"><%= time %> </li>
+                    <% } %>
+                <% }); %>
+            </ul>
+            <div class="asterisk">*All departure times are estimates based on short timetables published by <a href="http://www.cityoftyler.org/TylerTransit/tabid/104/Default.aspx">Tyler Transit</a>.</div>
+        <% } %>
 
         <div class="buttons">
             <a class="button favorite"><% if (is_favorite === true) { %>Remove from<% } else { %>Add to<% } %> favorites</a>

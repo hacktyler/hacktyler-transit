@@ -1,5 +1,5 @@
 $(function() {
-    // PLATFORM DETECTION
+    /* PLATFORM DETECTION */
     window.using_phonegap = (typeof(Media) != 'undefined');
     var uagent = navigator.userAgent.toLowerCase();
     window.platform = null;
@@ -122,12 +122,8 @@ $(function() {
         currentStop = null;
     }
 
-    function viewStop(stop) {
-        if (stop === null) {
-            throw("No stop provided!");
-        }
-
-        var weekday_schedule = _.map(stop["weekday_schedule"], function(time) {
+    function timesFromSchedule(entries) {
+       return _.map(entries, function(time) {
             ampm = time.substr(time.length - 2, 2);
             no_ampm = time.substr(0, time.length - 3);
             parts = no_ampm.split(":");
@@ -146,21 +142,52 @@ $(function() {
 
             return d;
         });
+    }
 
-        var now = new Date();
+    function viewStop(stop) {
+        if (stop === null) {
+            throw("No stop provided!");
+        }
 
-        var next_departure = _.detect(weekday_schedule, function(time) {
-            return time > now;
-        });
+        var today = new Date();
+        var day = today.getDay();
 
-        if (_.isUndefined(next_departure) || next_departure === null) {
-            stop["next_departure"] = null;
-            stop["next_departure_in"] = null;
+        // Sunday
+        if (day == 0) {
+            stop["schedule"] = null;
+            stop["schedule_message"] = "Tyler Transit buses do not run on Sunday.";
+        // Saturday
+        } else if (day == 6) {
+            // TODO
+            stop["schedule"] = null;
+            stop["schedule_message"] = "The Saturday bus schedule is not yet available.";
+        // Weekday
         } else {
-            stop["next_departure"] = stop["weekday_schedule"][weekday_schedule.indexOf(next_departure)]
+            stop["schedule"] = stop["weekday_schedule"];
+            stop["schedule_message"] = null;
+        }
 
-            var delta = next_departure.getTime() - now.getTime();
-            stop["next_departure_in"] = Math.floor((delta / 1000) / 60);
+
+        // If there is a schedule, highlight next stop
+        if (!_.isNull(stop["schedule"])) {
+            times = timesFromSchedule(stop["schedule"]);
+
+            var now = new Date();
+
+            var next_departure = _.detect(times, function(time) {
+                return time > now;
+            });
+
+            if (_.isUndefined(next_departure) || next_departure === null) {
+                stop["next_departure"] = null;
+                stop["next_departure_in"] = null;
+            } else {
+                // TODO
+                stop["next_departure"] = stop["schedule"][times.indexOf(next_departure)]
+
+                var delta = next_departure.getTime() - now.getTime();
+                stop["next_departure_in"] = Math.floor((delta / 1000) / 60);
+            }
         }
 
         stop["is_favorite"] = isFavorite(stop["order"]);
