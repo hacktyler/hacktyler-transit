@@ -182,7 +182,6 @@ $(function() {
                 stop["next_departure"] = null;
                 stop["next_departure_in"] = null;
             } else {
-                // TODO
                 stop["next_departure"] = stop["schedule"][times.indexOf(next_departure)]
 
                 var delta = next_departure.getTime() - now.getTime();
