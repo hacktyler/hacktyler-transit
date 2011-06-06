@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.hacktyler.transit" version="0.0.2">
 
-    <name>Hack Tyler Transit</name>
+    <name>Tyler On Time</name>
 
     <description>
         A transit app for Tyler, TX.
