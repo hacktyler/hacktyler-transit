@@ -78,4 +78,7 @@ with open('bus-stops-schedule.csv', 'r') as f:
 
         feature.Destroy()
 
+# Render blows away prj file
+shutil.copyfile('bus_stops_4326/bus_stops_4326.prj', 'bus_stops_data/bus_stops_data.prj')
+
 output.Destroy()    
