@@ -24,7 +24,7 @@ $(function() {
     };
 
     window.STOP_LIST_ITEM_TEMPLATE = _.template($('#stop-list-item-template').html());
-    window.FAVORITE_LIST_ITEM_TEMPLATE = _.template($('#favorite-list-item-template').html());
+    window.FAVORITE_LIST_TEMPLATE = _.template($('#favorite-list-template').html());
     window.STOP_DETAIL_TEMPLATE = _.template($('#stop-detail-template').html());
 
     window.currentStop = null;
@@ -50,23 +50,19 @@ $(function() {
     function showFavorites() {
         var favorites = getFavorites();
 
-        var i = 1;
-
-        $("#favorites .stop").remove();
+        var stops = new Array();
 
         _.each(favorites, function(favorite) {
             var stop = _.detect(TRANSIT_STOPS, function(stop) {
                 return stop["order"] == favorite;
             });
 
-            $("#favorites ul").append(FAVORITE_LIST_ITEM_TEMPLATE(stop));
-
-            if (i % 2 == 0) {
-                $("#favorites #favorite-" + stop["order"]).addClass("even");
-            }
-
-            i += 1;
+            stops.push(stop);
         });
+
+        console.log(stops);
+
+        $("#favorites .contents").html(FAVORITE_LIST_TEMPLATE({ "stops": stops }));
 
         $('#favorites .stop').click(function() {
             window.location.hash = "stop/" + $(this).attr("id").substr("favorite-".length, 3);

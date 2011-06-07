@@ -31,8 +31,8 @@
 
                 <section id="favorites" class="page">
                     <a class="button close">&laquo; Back to home</a>
-                    <ul>
-                    </ul>
+                    <div class="contents">
+                    </div>
                     <a class="button close">&laquo; Back to home</a>                    
                 </section>
                 
@@ -85,8 +85,17 @@
         <li id="stop-<%= order %>" class="stop"><%= name %><% if (transfer_to != "") { %><br /><span class="transfer">Transfer to <%= transfer_to %></span><% } %></li>
     </script> 
 
-    <script type="text/template" id="favorite-list-item-template"> 
-        <li id="favorite-<%= order %>" class="stop"><%= name %><br /><span class="line-name"><%= line %> Line <%= direction %></span></li>
+    <script type="text/template" id="favorite-list-template"> 
+        <% if (_.isEmpty(stops)) { %>
+            <p>You have not selected any favorite stops.</p>
+        <% } else { %>
+        <ul>
+            <% _.each(stops, function(stop, index) { %>
+                <% console.log(stop); %>
+                <li id="favorite-<%= stop['order'] %>" class="stop <% if (index % 2 == 0) { %>even<% } %>"><%= stop['name'] %><br /><span class="line-name"><%= stop['line'] %> Line <%= stop['direction'] %></span></li>
+            <% }); %>
+        </ul>
+        <% } %>
     </script> 
 
     <script type="text/template" id="stop-detail-template"> 
