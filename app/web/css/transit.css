@@ -8,7 +8,7 @@ footer { width: 960px; position: relative; margin: -35px auto 0 auto; height: 35
 footer .credits { width: 100%; padding-top: 7px; padding-left: 7px; }
 
 /* Content */
-header h1 { font-size: 40px; padding-top: 20px; cursor: pointer; }
+header h1 { font-size: 42px; padding-top: 20px; cursor: pointer; }
 header hr { margin-bottom: 20px; }
 
 .page { display: none; }
