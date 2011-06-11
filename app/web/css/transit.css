@@ -17,6 +17,7 @@ li { margin: 0; padding: 10px 0 10px 5px; }
 li.even { background-color: #eee; }
 
 #home .button { width: 274px; font-size: 20px; margin-bottom: 10px; text-align: center; padding: 8px 12px; }
+#home .transit-map { display: none; }
 
 #lines .line { font-size: 18px; cursor: pointer; }
 

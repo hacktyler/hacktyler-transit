@@ -1,17 +1,38 @@
 $(function() {
     /* PLATFORM DETECTION */
-    window.using_phonegap = (typeof(Media) != 'undefined');
+    window.using_phonegap = (!_.isUndefined(window.device));
     var uagent = navigator.userAgent.toLowerCase();
     window.platform = null;
     
     if (uagent.search('android') > -1) {
         platform = 'android';
-    } else if (uagent.search('ipad') > -1 || uagent.search('ipod') > -1 || uagent.search('iphone') > -1) {
-        platform = 'ios';
+    } else if (uagent.search('ipad') > -1) {
+        platform = 'ipad';
+    } else if (uagent.search('ipod') > -1 || uagent.search('iphone') > -1) {
+        platform = 'iphone';
     } else if (uagent.search('blackberry') > -1) {
         platform = 'blackberry';
     }
 
+    /* RENDER DYNAMIC CONTENT? */
+    window.RENDER_DYNAMIC = false;
+
+    // Render extras when using Phonegap and a strong connection is available
+    if (window.using_phonegap) {
+        if (_.indexOf([Connection.ETHERNET, Connection.WIFI, Connection.CELL_4G], navigator.network.connection.type) > 0) {
+            if (network.isReachable(reachableHostname, reachableCallback, [reachableOptions])) {
+                window.RENDER_DYNAMIC = true;
+            }
+        }
+    // Also render extras if not on a mobile device (ipad is assumed to be an exception
+    } else {
+        if (_.indexOf(['android', 'ios', 'blackberry'], platform) == -1)
+        {
+            window.RENDER_DYNAMIC = true;
+        }
+    }
+
+    /* GLOBALS */
     window.BUS_LINES = {
         "red-line-north": "Red Line North",
         "red-line-south": "Red Line South",
@@ -29,16 +50,7 @@ $(function() {
 
     window.currentStop = null;
 
-    function addStops(data) {
-        _.each(data, function(stop, index) {
-            $("#stops ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
-        });
-        
-        $('#stops .stop').click(function() {
-            window.location.hash = "stop/" + $(this).attr("id").substr("stop-".length, 3);
-        });
-    }
-
+    /* PAGES */
     function showHome() {
         $(".page").hide()
         $("#home").show();
@@ -70,6 +82,19 @@ $(function() {
 
         $(".page").hide()
         $("#favorites").show();
+
+        $(window).scrollTop(0)
+        currentStop = null;
+    }
+
+    function showMap() { 
+        // Create map on demand
+        if ($("#transit-map .canvas").is(":empty")) {
+            // TODO
+        }
+
+        $(".page").hide();
+        $("#transit-map").show();
 
         $(window).scrollTop(0)
         currentStop = null;
@@ -116,6 +141,17 @@ $(function() {
 
         $(window).scrollTop(0)
         currentStop = null;
+    }
+
+    /* UTILS */
+    function addStops(data) {
+        _.each(data, function(stop, index) {
+            $("#stops ul").append(STOP_LIST_ITEM_TEMPLATE(stop));
+        });
+        
+        $('#stops .stop').click(function() {
+            window.location.hash = "stop/" + $(this).attr("id").substr("stop-".length, 3);
+        });
     }
 
     function timesFromSchedule(entries) {
@@ -216,6 +252,7 @@ $(function() {
         }
     }
 
+    /* FAVORITES */
     function getFavorites() {
         favs = store.get("favorite_stops");
 
@@ -245,10 +282,12 @@ $(function() {
         setFavorites(_.without(favs, order));
     }
 
+    /* URL ROUTING */
     window.StopController = Backbone.Controller.extend({
         routes: {
             "": "home",
             "favorites": "favorites",
+            "map": "map",
             "about": "about",
             "find": "lines",
             "line/:line": "line",
@@ -261,6 +300,10 @@ $(function() {
 
         favorites: function() {
             showFavorites();
+        },
+
+        map: function() {
+            showMap();
         },
 
         about: function() {
@@ -282,6 +325,7 @@ $(function() {
 
     window.Controller = new StopController();
 
+    /* EVENT HANDLERS */
     $('header h1').click(function() {
         window.location.hash = "";
     });
@@ -292,6 +336,10 @@ $(function() {
     
     $("#view-favorites").click(function() {
         window.location.hash = "favorites";
+    });
+        
+    $("#view-map").click(function() {
+        window.location.hash = "map";
     });
 
     $("#view-about").click(function() {
@@ -305,6 +353,11 @@ $(function() {
     $(".close").click(function() {
         history.back(); 
     });
+
+    /* SETUP */
+    if (window.RENDER_DYNAMIC) {
+        $("#view-map").show();
+    }
 
     addStops(TRANSIT_STOPS);
     Backbone.history.start();
