@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
 import argparse
-from math import pi,sin,log,exp,atan
+from math import pi, sin, log, exp, atan
+import multiprocessing
+import Queue
 import os
-import sys
 
 import mapnik2
 
@@ -14,7 +15,7 @@ DEFAULT_TILE_WIDTH = 256
 DEFAULT_TILE_HEIGHT = 256
 DEFAULT_MIN_ZOOM = 9
 DEFAULT_MAX_ZOOM = 12
-DEFAULT_THREAD_COUNT = 2
+DEFAULT_PROCESS_COUNT = 2
 DEFAULT_FILE_TYPE = 'png256'
 
 DEG_TO_RAD = pi / 180
@@ -55,42 +56,66 @@ class GoogleProjection:
          h = RAD_TO_DEG * ( 2 * atan(exp(g)) - 0.5 * pi)
          return (f,h)
 
-def render_tile(config, filename, x, y, zoom, width=DEFAULT_TILE_WIDTH, height=DEFAULT_TILE_HEIGHT, filetype=DEFAULT_FILE_TYPE):
-    mmap = mapnik2.Map(width, height)
-    mapnik2.load_map(mmap, 'transit.xml', True)
-    map_proj = mapnik2.Projection(mmap.srs)
+class Renderer(multiprocessing.Process):
+    """
+    A tile renderer optimized for running in an isolated process.
+    """
+    def __init__(self, tile_queue, config, width=DEFAULT_TILE_WIDTH, height=DEFAULT_TILE_HEIGHT, filetype=DEFAULT_FILE_TYPE):
+        multiprocessing.Process.__init__(self)
 
-    tile_proj = GoogleProjection()
-    #x, y = tile_proj.fromLLtoPixel([longitude, latitude], zoom) 
+        self.killed = False
 
-    # Calculate pixel positions of bottom-left & top-right
-    half_width = width / 2
-    half_height = height / 2
-    p0 = (x * width, (y + 1) * height)
-    p1 = ((x + 1) * width, y * height)
+        self.config = config
+        self.tile_queue = tile_queue
+        self.width = width
+        self.height = height
+        self.filetype = filetype
 
-    # Convert tile coords to LatLng
-    l0 = tile_proj.fromPixelToLL(p0, zoom);
-    l1 = tile_proj.fromPixelToLL(p1, zoom);
-    
-    # Convert LatLng to map coords
-    c0 = map_proj.forward(mapnik2.Coord(l0[0], l0[1]))
-    c1 = map_proj.forward(mapnik2.Coord(l1[0], l1[1]))
+    def run(self):
+        self.mapnik_map = mapnik2.Map(self.width, self.height)
+        mapnik2.load_map(self.mapnik_map, self.config, True)
+        self.map_projection = mapnik2.Projection(self.mapnik_map.srs)
 
-    # Create bounding box for the render
-    bbox = mapnik2.Box2d(c0.x, c0.y, c1.x, c1.y)
+        self.tile_projection = GoogleProjection()  
 
-    mmap.zoom_to_box(bbox)
-    mmap.buffer_size = max([half_width, half_height]) 
+        while not self.killed:
+            try:
+                tile_parameters = self.tile_queue.get_nowait()
+            except Queue.Empty:
+                break
 
-    # Render image with default Agg renderer
-    image = mapnik2.Image(width, height)
-    mapnik2.render(mmap, image)
-    image.save(filename, filetype)
+            self.render_tile(*tile_parameters)
+            self.tile_queue.task_done()
 
-def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEFAULT_MAX_ZOOM, num_threads=DEFAULT_THREAD_COUNT):
-    print "render_tiles(", bbox, config, tile_dir, min_zoom, max_zoom, ")"
+    def render_tile(self, filename, x, y, zoom):
+        print 'Rendering %s' % (filename)
 
+        # Calculate pixel positions of bottom-left & top-right
+        half_width = self.width / 2
+        half_height = self.height / 2
+        p0 = (x * self.width, (y + 1) * self.height)
+        p1 = ((x + 1) * self.width, y * self.height)
+
+        # Convert tile coords to LatLng
+        l0 = self.tile_projection.fromPixelToLL(p0, zoom);
+        l1 = self.tile_projection.fromPixelToLL(p1, zoom);
+        
+        # Convert LatLng to map coords
+        c0 = self.map_projection.forward(mapnik2.Coord(l0[0], l0[1]))
+        c1 = self.map_projection.forward(mapnik2.Coord(l1[0], l1[1]))
+
+        # Create bounding box for the render
+        bbox = mapnik2.Box2d(c0.x, c0.y, c1.x, c1.y)
+
+        self.mapnik_map.zoom_to_box(bbox)
+        self.mapnik_map.buffer_size = max([half_width, half_height]) 
+
+        # Render image with default Agg renderer
+        image = mapnik2.Image(self.width, self.height)
+        mapnik2.render(self.mapnik_map, image)
+        image.save(filename, self.filetype)
+
+def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEFAULT_MAX_ZOOM, process_count=DEFAULT_PROCESS_COUNT):
     if not os.path.isdir(tile_dir):
          os.mkdir(tile_dir)
 
@@ -99,7 +124,7 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
     ll0 = (bbox[1], bbox[0])
     ll1 = (bbox[3], bbox[2])
 
-    tiles = []
+    tile_queue = multiprocessing.JoinableQueue()
 
     for z in range(min_zoom, max_zoom + 1):
         px0 = gprj.fromLLtoPixel(ll0, z)
@@ -134,15 +159,17 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
 
                 str_y = str(y)
 
-                tile_uri = tile_dir + '/' + zoom + '/' + str_x + '/' + str_y + '.png'
+                filename = tile_dir + '/' + zoom + '/' + str_x + '/' + str_y + '.png'
 
                 # Submit tile to be rendered into the queue
-                t = (config, tile_uri, x, y, z)
-                tiles.append(t)
+                t = (filename, x, y, z)
+                tile_queue.put(t)
 
-    for t in tiles:
-        print t 
-        render_tile(*t)
+    for i in range(process_count):
+        renderer = Renderer(tile_queue, config)
+        renderer.start()
+
+    tile_queue.join()
 
 if __name__ == "__main__":
     
@@ -156,9 +183,9 @@ if __name__ == "__main__":
     parser.add_argument('lon_2', type=float, help="Most eastern longitude")
     parser.add_argument('min_zoom', help="Minimum zoom level to render", type=int, default=DEFAULT_MIN_ZOOM)
     parser.add_argument('max_zoom', help="Maximum zoom level to render", type=int, default=DEFAULT_MAX_ZOOM)
-    parser.add_argument('cores', help="Number of rendering threads to spawn, should be roughly equal to number of CPU cores available", type=int, default=DEFAULT_THREAD_COUNT)
+    parser.add_argument('process_count', help="Number of rendering processes to create", type=int, default=DEFAULT_PROCESS_COUNT)
     args = parser.parse_args()
     
     bbox = (args.lat_1, args.lon_1,  args.lat_2, args.lon_2)
     
-    render_tiles(bbox, args.config, args.tile_dir, args.min_zoom, args.max_zoom)
+    render_tiles(bbox, args.config, args.tile_dir, args.min_zoom, args.max_zoom, args.process_count)
