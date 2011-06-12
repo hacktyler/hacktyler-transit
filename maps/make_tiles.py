@@ -8,6 +8,7 @@ from math import pi, sin, log, exp, atan
 import multiprocessing
 import Queue
 import os
+import sys
 
 import mapnik2
 
@@ -70,8 +71,6 @@ class Renderer(multiprocessing.Process):
     def __init__(self, tile_queue, config, width=DEFAULT_TILE_WIDTH, height=DEFAULT_TILE_HEIGHT, filetype=DEFAULT_FILE_TYPE):
         multiprocessing.Process.__init__(self)
 
-        self.killed = False
-
         self.config = config
         self.tile_queue = tile_queue
         self.width = width
@@ -85,7 +84,7 @@ class Renderer(multiprocessing.Process):
         self.map_projection = mapnik2.Projection(self.mapnik_map.srs)
         self.tile_projection = GoogleProjection()  
 
-        while not self.killed:
+        while True:
             try:
                 tile_parameters = self.tile_queue.get_nowait()
             except Queue.Empty:
@@ -96,7 +95,7 @@ class Renderer(multiprocessing.Process):
 
     def render_tile(self, filename, tile_x, tile_y, zoom):
         """
-        Render a single tile to a given filename
+        Render a single tile to a given filename.
         """
         print 'Rendering %s' % (filename)
 
@@ -174,11 +173,21 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
                 t = (filename, tile_x, tile_y, zoom)
                 tile_queue.put(t)
 
+    print 'Using %i processes to render %i tiles' % (process_count, tile_queue.qsize())
+
+    processes = []
+
     for i in range(process_count):
         renderer = Renderer(tile_queue, config)
         renderer.start()
 
-    tile_queue.join()
+        processes.append(renderer)
+
+    try:
+        tile_queue.join()
+    except KeyboardInterrupt:
+        for p in processes:
+            p.terminate()
 
 if __name__ == "__main__":
     
