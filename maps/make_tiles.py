@@ -135,31 +135,27 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
         tile_y1 = int(px0[1] / 256.0)
         tile_y2 = int(px1[1] / 256.0) + 1
 
-        # check if we have directories in place
-        zoom = str(z)
+        zoom_dir = os.path.join(tile_dir, str(z))
 
-        if not os.path.isdir(tile_dir + '/' + zoom):
-            os.mkdir(tile_dir + '/' + zoom)
+        if not os.path.isdir(zoom_dir):
+            os.mkdir(zoom_dir)
 
         for x in range(tile_x1, tile_x2):
-            # Validate x co-ordinate
+            # Validate x coordinate
             if (x < 0) or (x >= 2**z):
                 continue
 
-            # Check if we have directories in place
-            str_x = str(x)
+            x_dir = os.path.join(zoom_dir, str(x))
 
-            if not os.path.isdir(tile_dir + '/' + zoom + '/' + str_x):
-                os.mkdir(tile_dir + '/' + zoom + '/' + str_x)
+            if not os.path.isdir(x_dir):
+                os.mkdir(x_dir)
 
             for y in range(tile_y1, tile_y2):
-                # Validate x co-ordinate
+                # Validate y coordinate
                 if (y < 0) or (y >= 2**z):
                     continue
 
-                str_y = str(y)
-
-                filename = tile_dir + '/' + zoom + '/' + str_x + '/' + str_y + '.png'
+                filename = os.path.join(x_dir, '%s.png' % str(y))
 
                 # Submit tile to be rendered into the queue
                 t = (filename, x, y, z)
@@ -174,8 +170,8 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
 if __name__ == "__main__":
     
     #python render_tiles.py tilemill/wards.xml mayor-2011/.tiles/wards/ -89.03 41.07 -87.51 42.50 9 16 2
-    parser = argparse.ArgumentParser(description='Render tiles for a given bounding box from a Mapnik2 XML file.')
-    parser.add_argument('config', help="Mapnik configuration XML file")
+    parser = argparse.ArgumentParser(description='Render tiles for a given bounding box from a Mapnik2 XML configuration file.')
+    parser.add_argument('config', help="Mapnik2 XML configuration file")
     parser.add_argument('tile_dir', help="Destination directory for rendered tiles")
     parser.add_argument('lat_1', type=float, help="Most nortern latitude")
     parser.add_argument('lon_1', type=float, help="Most western longitude")
