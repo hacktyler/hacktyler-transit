@@ -81,8 +81,8 @@ class Renderer(multiprocessing.Process):
     def run(self):
         self.mapnik_map = mapnik2.Map(self.width, self.height)
         mapnik2.load_map(self.mapnik_map, self.config, True)
-        self.map_projection = mapnik2.Projection(self.mapnik_map.srs)
 
+        self.map_projection = mapnik2.Projection(self.mapnik_map.srs)
         self.tile_projection = GoogleProjection()  
 
         while not self.killed:
@@ -94,22 +94,25 @@ class Renderer(multiprocessing.Process):
             self.render_tile(*tile_parameters)
             self.tile_queue.task_done()
 
-    def render_tile(self, filename, x, y, zoom):
+    def render_tile(self, filename, tile_x, tile_y, zoom):
+        """
+        Render a single tile to a given filename
+        """
         print 'Rendering %s' % (filename)
 
         # Calculate pixel positions of bottom-left & top-right
         half_width = self.width / 2
         half_height = self.height / 2
-        p0 = (x * self.width, (y + 1) * self.height)
-        p1 = ((x + 1) * self.width, y * self.height)
+        px0 = (tile_x * self.width, (tile_y + 1) * self.height)
+        px1 = ((tile_x + 1) * self.width, tile_y * self.height)
 
         # Convert tile coords to LatLng
-        l0 = self.tile_projection.fromPixelToLL(p0, zoom);
-        l1 = self.tile_projection.fromPixelToLL(p1, zoom);
+        ll0 = self.tile_projection.fromPixelToLL(px0, zoom);
+        ll1 = self.tile_projection.fromPixelToLL(px1, zoom);
         
         # Convert LatLng to map coords
-        c0 = self.map_projection.forward(mapnik2.Coord(l0[0], l0[1]))
-        c1 = self.map_projection.forward(mapnik2.Coord(l1[0], l1[1]))
+        c0 = self.map_projection.forward(mapnik2.Coord(ll0[0], ll0[1]))
+        c1 = self.map_projection.forward(mapnik2.Coord(ll1[0], ll1[1]))
 
         # Create bounding box for the render
         bbox = mapnik2.Box2d(c0.x, c0.y, c1.x, c1.y)
@@ -136,39 +139,39 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
 
     tile_queue = multiprocessing.JoinableQueue()
 
-    for z in range(min_zoom, max_zoom + 1):
-        px0 = tile_projection.fromLLtoPixel(ll0, z)
-        px1 = tile_projection.fromLLtoPixel(ll1, z)
+    for zoom in range(min_zoom, max_zoom + 1):
+        px0 = tile_projection.fromLLtoPixel(ll0, zoom)
+        px1 = tile_projection.fromLLtoPixel(ll1, zoom)
 
         tile_x1 = int(px0[0] / 256.0)
         tile_x2 = int(px1[0] / 256.0) + 1
         tile_y1 = int(px0[1] / 256.0)
         tile_y2 = int(px1[1] / 256.0) + 1
 
-        zoom_dir = os.path.join(tile_dir, str(z))
+        zoom_dir = os.path.join(tile_dir, str(zoom))
 
         if not os.path.isdir(zoom_dir):
             os.mkdir(zoom_dir)
 
-        for x in range(tile_x1, tile_x2):
+        for tile_x in range(tile_x1, tile_x2):
             # Validate x coordinate
-            if (x < 0) or (x >= 2**z):
+            if (tile_x < 0) or (tile_x >= 2**zoom):
                 continue
 
-            x_dir = os.path.join(zoom_dir, str(x))
+            x_dir = os.path.join(zoom_dir, str(tile_x))
 
             if not os.path.isdir(x_dir):
                 os.mkdir(x_dir)
 
-            for y in range(tile_y1, tile_y2):
+            for tile_y in range(tile_y1, tile_y2):
                 # Validate y coordinate
-                if (y < 0) or (y >= 2**z):
+                if (tile_y < 0) or (tile_y >= 2**zoom):
                     continue
 
-                filename = os.path.join(x_dir, '%s.png' % str(y))
+                filename = os.path.join(x_dir, '%s.png' % str(tile_y))
 
                 # Submit tile to be rendered into the queue
-                t = (filename, x, y, z)
+                t = (filename, tile_x, tile_y, zoom)
                 tile_queue.put(t)
 
     for i in range(process_count):
