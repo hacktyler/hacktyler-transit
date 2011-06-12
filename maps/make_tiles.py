@@ -30,6 +30,10 @@ def minmax (a,b,c):
     return a
 
 class GoogleProjection:
+    """
+    Google projection transformations. Sourced from the OSM.
+    Have not taken the time to figure out how this works.
+    """
     def __init__(self, levels=18):
         self.Bc = []
         self.Cc = []
@@ -119,10 +123,13 @@ class Renderer(multiprocessing.Process):
         image.save(filename, self.filetype)
 
 def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEFAULT_MAX_ZOOM, process_count=DEFAULT_PROCESS_COUNT):
+    """
+    Renders a batch of tiles for a given bounding-box.
+    """
     if not os.path.isdir(tile_dir):
          os.mkdir(tile_dir)
 
-    gprj = GoogleProjection(max_zoom) 
+    tile_projection = GoogleProjection(max_zoom) 
 
     ll0 = (bbox[1], bbox[0])
     ll1 = (bbox[3], bbox[2])
@@ -130,8 +137,8 @@ def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEF
     tile_queue = multiprocessing.JoinableQueue()
 
     for z in range(min_zoom, max_zoom + 1):
-        px0 = gprj.fromLLtoPixel(ll0, z)
-        px1 = gprj.fromLLtoPixel(ll1, z)
+        px0 = tile_projection.fromLLtoPixel(ll0, z)
+        px1 = tile_projection.fromLLtoPixel(ll1, z)
 
         tile_x1 = int(px0[0] / 256.0)
         tile_x2 = int(px1[0] / 256.0) + 1
