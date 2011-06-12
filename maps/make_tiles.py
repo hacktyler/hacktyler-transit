@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+# Inspired by generate_tiles.py, part of the Open Street Map project:
+# http://svn.openstreetmap.org/applications/rendering/mapnik/generate_tiles.py
+
 import argparse
 from math import pi, sin, log, exp, atan
 import multiprocessing
