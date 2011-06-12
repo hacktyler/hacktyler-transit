@@ -10,3 +10,4 @@ maps/*.shp
 maps/*.shp.xml
 maps/*.shx
 maps/*.zip
+.tiles

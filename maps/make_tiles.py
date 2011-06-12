@@ -1,0 +1,164 @@
+#!/usr/bin/python
+
+import argparse
+from math import pi,sin,log,exp,atan
+import os
+import sys
+
+import mapnik2
+
+mapnik2.register_fonts('/Library/Fonts/')
+mapnik2.register_fonts('/usr/share/fonts')
+
+DEFAULT_TILE_WIDTH = 256
+DEFAULT_TILE_HEIGHT = 256
+DEFAULT_MIN_ZOOM = 9
+DEFAULT_MAX_ZOOM = 12
+DEFAULT_THREAD_COUNT = 2
+DEFAULT_FILE_TYPE = 'png256'
+
+DEG_TO_RAD = pi / 180
+RAD_TO_DEG = 180 / pi
+
+def minmax (a,b,c):
+    a = max(a,b)
+    a = min(a,c)
+    return a
+
+class GoogleProjection:
+    def __init__(self, levels=18):
+        self.Bc = []
+        self.Cc = []
+        self.zc = []
+        self.Ac = []
+        c = 256
+
+        for d in range(levels + 1):
+            e = c/2;
+            self.Bc.append(c/360.0)
+            self.Cc.append(c/(2 * pi))
+            self.zc.append((e,e))
+            self.Ac.append(c)
+            c *= 2
+                
+    def fromLLtoPixel(self, ll, zoom):
+         d = self.zc[zoom]
+         e = round(d[0] + ll[0] * self.Bc[zoom])
+         f = minmax(sin(DEG_TO_RAD * ll[1]),-0.9999,0.9999)
+         g = round(d[1] + 0.5*log((1+f)/(1-f))*-self.Cc[zoom])
+         return (e,g)
+     
+    def fromPixelToLL(self, px, zoom):
+         e = self.zc[zoom]
+         f = (px[0] - e[0])/self.Bc[zoom]
+         g = (px[1] - e[1])/-self.Cc[zoom]
+         h = RAD_TO_DEG * ( 2 * atan(exp(g)) - 0.5 * pi)
+         return (f,h)
+
+def render_tile(config, filename, x, y, zoom, width=DEFAULT_TILE_WIDTH, height=DEFAULT_TILE_HEIGHT, filetype=DEFAULT_FILE_TYPE):
+    mmap = mapnik2.Map(width, height)
+    mapnik2.load_map(mmap, 'transit.xml', True)
+    map_proj = mapnik2.Projection(mmap.srs)
+
+    tile_proj = GoogleProjection()
+    #x, y = tile_proj.fromLLtoPixel([longitude, latitude], zoom) 
+
+    # Calculate pixel positions of bottom-left & top-right
+    half_width = width / 2
+    half_height = height / 2
+    p0 = (x * width, (y + 1) * height)
+    p1 = ((x + 1) * width, y * height)
+
+    # Convert tile coords to LatLng
+    l0 = tile_proj.fromPixelToLL(p0, zoom);
+    l1 = tile_proj.fromPixelToLL(p1, zoom);
+    
+    # Convert LatLng to map coords
+    c0 = map_proj.forward(mapnik2.Coord(l0[0], l0[1]))
+    c1 = map_proj.forward(mapnik2.Coord(l1[0], l1[1]))
+
+    # Create bounding box for the render
+    bbox = mapnik2.Box2d(c0.x, c0.y, c1.x, c1.y)
+
+    mmap.zoom_to_box(bbox)
+    mmap.buffer_size = max([half_width, half_height]) 
+
+    # Render image with default Agg renderer
+    image = mapnik2.Image(width, height)
+    mapnik2.render(mmap, image)
+    image.save(filename, filetype)
+
+def render_tiles(bbox, config, tile_dir, min_zoom=DEFAULT_MIN_ZOOM, max_zoom=DEFAULT_MAX_ZOOM, num_threads=DEFAULT_THREAD_COUNT):
+    print "render_tiles(", bbox, config, tile_dir, min_zoom, max_zoom, ")"
+
+    if not os.path.isdir(tile_dir):
+         os.mkdir(tile_dir)
+
+    gprj = GoogleProjection(max_zoom) 
+
+    ll0 = (bbox[1], bbox[0])
+    ll1 = (bbox[3], bbox[2])
+
+    tiles = []
+
+    for z in range(min_zoom, max_zoom + 1):
+        px0 = gprj.fromLLtoPixel(ll0, z)
+        px1 = gprj.fromLLtoPixel(ll1, z)
+
+        tile_x1 = int(px0[0] / 256.0)
+        tile_x2 = int(px1[0] / 256.0) + 1
+        tile_y1 = int(px0[1] / 256.0)
+        tile_y2 = int(px1[1] / 256.0) + 1
+
+        # check if we have directories in place
+        zoom = str(z)
+
+        if not os.path.isdir(tile_dir + '/' + zoom):
+            os.mkdir(tile_dir + '/' + zoom)
+
+        for x in range(tile_x1, tile_x2):
+            # Validate x co-ordinate
+            if (x < 0) or (x >= 2**z):
+                continue
+
+            # Check if we have directories in place
+            str_x = str(x)
+
+            if not os.path.isdir(tile_dir + '/' + zoom + '/' + str_x):
+                os.mkdir(tile_dir + '/' + zoom + '/' + str_x)
+
+            for y in range(tile_y1, tile_y2):
+                # Validate x co-ordinate
+                if (y < 0) or (y >= 2**z):
+                    continue
+
+                str_y = str(y)
+
+                tile_uri = tile_dir + '/' + zoom + '/' + str_x + '/' + str_y + '.png'
+
+                # Submit tile to be rendered into the queue
+                t = (config, tile_uri, x, y, z)
+                tiles.append(t)
+
+    for t in tiles:
+        print t 
+        render_tile(*t)
+
+if __name__ == "__main__":
+    
+    #python render_tiles.py tilemill/wards.xml mayor-2011/.tiles/wards/ -89.03 41.07 -87.51 42.50 9 16 2
+    parser = argparse.ArgumentParser(description='Render tiles for a given bounding box from a Mapnik2 XML file.')
+    parser.add_argument('config', help="Mapnik configuration XML file")
+    parser.add_argument('tile_dir', help="Destination directory for rendered tiles")
+    parser.add_argument('lat_1', type=float, help="Most nortern latitude")
+    parser.add_argument('lon_1', type=float, help="Most western longitude")
+    parser.add_argument('lat_2', type=float, help="Most southern latitude")
+    parser.add_argument('lon_2', type=float, help="Most eastern longitude")
+    parser.add_argument('min_zoom', help="Minimum zoom level to render", type=int, default=DEFAULT_MIN_ZOOM)
+    parser.add_argument('max_zoom', help="Maximum zoom level to render", type=int, default=DEFAULT_MAX_ZOOM)
+    parser.add_argument('cores', help="Number of rendering threads to spawn, should be roughly equal to number of CPU cores available", type=int, default=DEFAULT_THREAD_COUNT)
+    args = parser.parse_args()
+    
+    bbox = (args.lat_1, args.lon_1,  args.lat_2, args.lon_2)
+    
+    render_tiles(bbox, args.config, args.tile_dir, args.min_zoom, args.max_zoom)
